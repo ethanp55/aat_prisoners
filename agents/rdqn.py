@@ -117,7 +117,7 @@ class RDQN(Agent):
             increase = reward - self.prev_reward
             self.add_experience(self.generator_to_use_idx, increase, self.next_state, True)
 
-        print(f'Generators used: {self.generators_used}')
+        # print(f'Generators used: {self.generators_used}')
 
     def store_terminal_state(self, state, reward) -> None:
         player_idx, opp_idx = self.player, 1 - self.player

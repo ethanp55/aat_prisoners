@@ -1,6 +1,6 @@
 from aat.train_generators import N_EPOCHS, N_ROUNDS
 from agents.dqn import DQNAgent
-from agents.generator import Bullied, Bully, BullyPunish, CFR, Coop, CoopPunish, Minimax
+from agents.generator import Bullied, BullyPunish, CFR, Coop, CoopPunish, Minimax
 from game.prisoners_dilemma import PrisonersDilemma
 from game.main import run_with_specified_agents
 
@@ -26,7 +26,6 @@ for epoch in range(N_EPOCHS):
 
         list_of_opponents = []
         list_of_opponents.append(Bullied(game, opp_idx))
-        list_of_opponents.append(Bully(game, opp_idx))
         list_of_opponents.append(BullyPunish(game, opp_idx))
         list_of_opponents.append(CFR(game, opp_idx))
         list_of_opponents.append(Coop(game, opp_idx))
