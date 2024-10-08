@@ -8,9 +8,11 @@ from typing import List, Optional
 
 
 class Generator(Agent):
-    def __init__(self, name: str, generator: Agent, checker: Optional[AssumptionChecker] = None) -> None:
+    def __init__(self, name: str, generator: Agent, baseline: float,
+                 checker: Optional[AssumptionChecker] = None) -> None:
         Agent.__init__(self, name=name, actions=[])
         self.generator = generator
+        self.baseline = baseline
         self.checker = checker
 
     def act(self, state, reward, round_num):
@@ -33,7 +35,7 @@ class Coop(Generator):
         game_name = str(game)
         generator = FolkEgalAgent(name, 1, 1, initial_state, game_name, read_from_file=True, player=player)
         checker = CoopChecker() if check_assumptions else None
-        Generator.__init__(self, name=name, generator=generator, checker=checker)
+        Generator.__init__(self, name=name, generator=generator, baseline=3, checker=checker)
 
 
 class CoopPunish(Generator):
@@ -44,7 +46,7 @@ class CoopPunish(Generator):
         coop_agent = FolkEgalAgent('foo', 1, 1, initial_state, game_name, read_from_file=True, player=player)
         generator = FolkEgalPunishAgent(name, coop_agent, game_name, game)
         checker = CoopPunishChecker() if check_assumptions else None
-        Generator.__init__(self, name=name, generator=generator, checker=checker)
+        Generator.__init__(self, name=name, generator=generator, baseline=3, checker=checker)
 
 
 class Bully(Generator):
@@ -54,7 +56,7 @@ class Bully(Generator):
         game_name = str(game)
         generator = FolkEgalAgent(name, 1, 1, initial_state, game_name + '_bully', read_from_file=True,
                                   specific_policy=True, p1_weight=1.0 - player, player=player)
-        Generator.__init__(self, name=name, generator=generator)
+        Generator.__init__(self, name=name, baseline=5, generator=generator)
 
 
 class BullyPunish(Generator):
@@ -66,7 +68,7 @@ class BullyPunish(Generator):
                                     specific_policy=True, p1_weight=1.0 - player, player=player)
         generator = FolkEgalPunishAgent(name, bully_agent, game_name, game)
         checker = BullyPunishChecker() if check_assumptions else None
-        Generator.__init__(self, name=name, generator=generator, checker=checker)
+        Generator.__init__(self, name=name, generator=generator, baseline=5, checker=checker)
 
 
 class Bullied(Generator):
@@ -77,7 +79,7 @@ class Bullied(Generator):
         generator = FolkEgalAgent(name, 1, 1, initial_state, game_name + '_bullied', read_from_file=True,
                                   specific_policy=True, p1_weight=abs(0.2 - player), player=player)
         checker = BulliedChecker() if check_assumptions else None
-        Generator.__init__(self, name=name, generator=generator, checker=checker)
+        Generator.__init__(self, name=name, generator=generator, baseline=-3, checker=checker)
 
 
 class Minimax(Generator):
@@ -87,7 +89,7 @@ class Minimax(Generator):
         game_name = str(game)
         generator = MinimaxAgent(name, 1, initial_state, game_name, read_from_file=True, player=player)
         checker = MinimaxChecker() if check_assumptions else None
-        Generator.__init__(self, name=name, generator=generator, checker=checker)
+        Generator.__init__(self, name=name, generator=generator, baseline=-1, checker=checker)
 
 
 class CFR(Generator):
@@ -98,4 +100,4 @@ class CFR(Generator):
         generator = CFRAgent(name=name, initial_game_state=initial_state, n_iterations=1, file_name=game_name,
                              read_from_file=True, player=player)
         checker = CFRChecker() if check_assumptions else None
-        Generator.__init__(self, name=name, generator=generator, checker=checker)
+        Generator.__init__(self, name=name, generator=generator, baseline=-1, checker=checker)
