@@ -40,7 +40,12 @@ class GeneratorPool(Agent):
 
             # Grab the assumption estimates, if we're tracking them
             if self.check_assumptions:
-                assumps = self.assumptions(self.generator_just_used_idx)
+                # assumps = self.assumptions(self.generator_just_used_idx)  # For most training
+                # For QAlegAATr training
+                assumps = []
+                for idx in range(len(self.generators)):
+                    assumps += self.assumptions(idx)
+                assumps = np.array(assumps).reshape(-1, )
                 tup = (assumps, round_num, generator_just_used.baseline, None)
 
                 self.generator_to_assumption_estimates[self.generator_just_used_idx] = \

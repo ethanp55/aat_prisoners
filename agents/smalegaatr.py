@@ -77,7 +77,7 @@ class SMAlegAATr(Agent):
     def record_final_results(self, state, agent_reward) -> None:
         if self.train:
             self.generator_pool.train_aat(state, agent_reward, self.generator_to_use_idx, enhanced=True)
-        print(f'Generators used: {self.generators_used}')
+        # print(f'Generators used: {self.generators_used}')
 
     def act(self, state, reward, round_num):
         self.prev_reward = reward

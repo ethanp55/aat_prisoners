@@ -91,7 +91,10 @@ class AlegAATr(Agent):
                 best_vector = x_scaled if not use_emp_rewards else None
 
         self.generator_to_use_idx = best_generator_idx
-        self.tracked_vector = best_vector
+        best_vector = best_vector.reshape(-1, 1)
+        n_zeroes = 4 - best_vector.shape[0]
+        best_vector = np.append(best_vector, np.zeros(n_zeroes)).reshape(1, -1)
+        self.tracked_vector = best_vector[0, :]
 
         # Update how many rounds it has been since each generator has been used
         for generator_idx in self.n_rounds_since_used.keys():
