@@ -21,6 +21,7 @@ class BulliedChecker(AssumptionChecker):
         self.insists = 1.0
         self.wont_harm = 1.0
         self.progress = 0.5
+        self.overall_progress = 0.5
 
         # Previous values (used in estimate calculations)
         self.prev_insists = 1.0
@@ -57,14 +58,16 @@ class BulliedChecker(AssumptionChecker):
         # Progress check
         if was_used:
             self.prev_rewards.append(increase)
-        optimistic_avg = -3
-        r_max, r_min = 5, -3
-        historical_avg = (sum(self.prev_rewards) / len(self.prev_rewards)) if len(self.prev_rewards) > 0 else 0
-        self.progress = (0.5 + ((0.5 * (historical_avg - optimistic_avg)) / (r_max - optimistic_avg))) \
-            if optimistic_avg < historical_avg else ((0.5 * (historical_avg - r_min)) / (optimistic_avg - r_min))
+        # optimistic_avg = -3
+        # r_max, r_min = 5, -3
+        # historical_avg = (sum(self.prev_rewards) / len(self.prev_rewards)) if len(self.prev_rewards) > 0 else 0
+        # self.progress = (0.5 + ((0.5 * (historical_avg - optimistic_avg)) / (r_max - optimistic_avg))) \
+        #     if optimistic_avg < historical_avg else ((0.5 * (historical_avg - r_min)) / (optimistic_avg - r_min))
+        self.progress = (sum(self.prev_rewards) / len(self.prev_rewards)) if len(self.prev_rewards) > 0 else 0
+        self.overall_progress = sum(self.all_rewards) / len(self.all_rewards)
 
     def assumptions(self) -> List[float]:
-        return [self.insists, self.wont_harm, self.progress]
+        return [self.insists, self.wont_harm, self.progress, self.overall_progress]
 
 
 class BullyPunishChecker(AssumptionChecker):
@@ -76,6 +79,7 @@ class BullyPunishChecker(AssumptionChecker):
         self.willing_to_be_bullied_2 = 1.0
         self.responds_to_punishment = 1.0
         self.progress = 0.5
+        self.overall_progress = 0.5
 
         # Previous values (used in estimate calculations)
         self.prev_willing_to_be_bullied_1 = 1.0
@@ -85,6 +89,7 @@ class BullyPunishChecker(AssumptionChecker):
         # Other values (used in estimate calculations)
         self.prev_reward = 0
         self.prev_rewards = []
+        self.all_rewards = []
 
     def check_assumptions(self, state, reward, was_used) -> None:
         our_action, their_action = state.actions[1], state.actions[0]
@@ -113,17 +118,21 @@ class BullyPunishChecker(AssumptionChecker):
 
         # Progress check
         increase = reward - self.prev_reward
+        self.all_rewards.append(increase)
         self.prev_reward = reward
         if was_used:
             self.prev_rewards.append(increase)
-        optimistic_avg = 5
-        r_max, r_min = 5, -3
-        historical_avg = (sum(self.prev_rewards) / len(self.prev_rewards)) if len(self.prev_rewards) > 0 else 0
-        self.progress = (0.5 + ((0.5 * (historical_avg - optimistic_avg)) / (r_max - optimistic_avg))) \
-            if optimistic_avg < historical_avg else ((0.5 * (historical_avg - r_min)) / (optimistic_avg - r_min))
+        # optimistic_avg = 5
+        # r_max, r_min = 5, -3
+        # historical_avg = (sum(self.prev_rewards) / len(self.prev_rewards)) if len(self.prev_rewards) > 0 else 0
+        # self.progress = (0.5 + ((0.5 * (historical_avg - optimistic_avg)) / (r_max - optimistic_avg))) \
+        #     if optimistic_avg < historical_avg else ((0.5 * (historical_avg - r_min)) / (optimistic_avg - r_min))
+        self.progress = (sum(self.prev_rewards) / len(self.prev_rewards)) if len(self.prev_rewards) > 0 else 0
+        self.overall_progress = sum(self.all_rewards) / len(self.all_rewards)
 
     def assumptions(self) -> List[float]:
-        return [self.willing_to_be_bullied_1, self.willing_to_be_bullied_2, self.responds_to_punishment, self.progress]
+        return [self.willing_to_be_bullied_1, self.willing_to_be_bullied_2, self.responds_to_punishment, self.progress,
+                self.overall_progress]
 
 
 class CFRChecker(AssumptionChecker):
@@ -134,6 +143,7 @@ class CFRChecker(AssumptionChecker):
         self.played_best_response_1 = 1.0
         self.played_best_response_2 = 1.0
         self.progress = 0.5
+        self.overall_progress = 0.5
 
         # Previous values (used in estimate calculations)
         self.prev_played_best_response_1 = 1.0
@@ -142,6 +152,7 @@ class CFRChecker(AssumptionChecker):
         # Other values (used in estimate calculations)
         self.prev_reward = 0
         self.prev_rewards = []
+        self.all_rewards = []
 
     def check_assumptions(self, state, reward, was_used) -> None:
         our_action, their_action = state.actions[1], state.actions[0]
@@ -159,17 +170,20 @@ class CFRChecker(AssumptionChecker):
 
         # Progress check
         increase = reward - self.prev_reward
+        self.all_rewards.append(increase)
         self.prev_reward = reward
         if was_used:
             self.prev_rewards.append(increase)
-        optimistic_avg = -1
-        r_max, r_min = 5, -3
-        historical_avg = (sum(self.prev_rewards) / len(self.prev_rewards)) if len(self.prev_rewards) > 0 else 0
-        self.progress = (0.5 + ((0.5 * (historical_avg - optimistic_avg)) / (r_max - optimistic_avg))) \
-            if optimistic_avg < historical_avg else ((0.5 * (historical_avg - r_min)) / (optimistic_avg - r_min))
+        # optimistic_avg = -1
+        # r_max, r_min = 5, -3
+        # historical_avg = (sum(self.prev_rewards) / len(self.prev_rewards)) if len(self.prev_rewards) > 0 else 0
+        # self.progress = (0.5 + ((0.5 * (historical_avg - optimistic_avg)) / (r_max - optimistic_avg))) \
+        #     if optimistic_avg < historical_avg else ((0.5 * (historical_avg - r_min)) / (optimistic_avg - r_min))
+        self.progress = (sum(self.prev_rewards) / len(self.prev_rewards)) if len(self.prev_rewards) > 0 else 0
+        self.overall_progress = sum(self.all_rewards) / len(self.all_rewards)
 
     def assumptions(self) -> List[float]:
-        return [self.played_best_response_1, self.played_best_response_2, self.progress]
+        return [self.played_best_response_1, self.played_best_response_2, self.progress, self.overall_progress]
 
 
 class CoopChecker(AssumptionChecker):
@@ -181,6 +195,7 @@ class CoopChecker(AssumptionChecker):
         self.reciprocates_cooperation = 1.0
         self.exploits_when_cooperate = 1.0
         self.progress = 0.5
+        self.overall_progress = 0.5
 
         # Previous values (used in estimate calculations)
         self.prev_wants_to_cooperate = 1.0
@@ -190,6 +205,7 @@ class CoopChecker(AssumptionChecker):
         # Other values (used in estimate calculations)
         self.prev_reward = 0
         self.prev_rewards = []
+        self.all_rewards = []
 
     def check_assumptions(self, state, reward, was_used) -> None:
         our_action, their_action = state.actions[1], state.actions[0]
@@ -226,17 +242,21 @@ class CoopChecker(AssumptionChecker):
 
         # Progress check
         increase = reward - self.prev_reward
+        self.all_rewards.append(increase)
         self.prev_reward = reward
         if was_used:
             self.prev_rewards.append(increase)
-        optimistic_avg = 3
-        r_max, r_min = 5, -3
-        historical_avg = (sum(self.prev_rewards) / len(self.prev_rewards)) if len(self.prev_rewards) > 0 else 0
-        self.progress = (0.5 + ((0.5 * (historical_avg - optimistic_avg)) / (r_max - optimistic_avg))) \
-            if optimistic_avg < historical_avg else ((0.5 * (historical_avg - r_min)) / (optimistic_avg - r_min))
+        # optimistic_avg = 3
+        # r_max, r_min = 5, -3
+        # historical_avg = (sum(self.prev_rewards) / len(self.prev_rewards)) if len(self.prev_rewards) > 0 else 0
+        # self.progress = (0.5 + ((0.5 * (historical_avg - optimistic_avg)) / (r_max - optimistic_avg))) \
+        #     if optimistic_avg < historical_avg else ((0.5 * (historical_avg - r_min)) / (optimistic_avg - r_min))
+        self.progress = (sum(self.prev_rewards) / len(self.prev_rewards)) if len(self.prev_rewards) > 0 else 0
+        self.overall_progress = sum(self.all_rewards) / len(self.all_rewards)
 
     def assumptions(self) -> List[float]:
-        return [self.wants_to_cooperate, self.reciprocates_cooperation, self.exploits_when_cooperate, self.progress]
+        return [self.wants_to_cooperate, self.reciprocates_cooperation, self.exploits_when_cooperate, self.progress,
+                self.overall_progress]
 
 
 class CoopPunishChecker(AssumptionChecker):
@@ -247,6 +267,7 @@ class CoopPunishChecker(AssumptionChecker):
         self.they_cooperate = 1.0
         self.responds_to_punishment = 1.0
         self.progress = 0.5
+        self.overall_progress = 0.5
 
         # Previous values (used in estimate calculations)
         self.prev_they_cooperate = 1.0
@@ -255,6 +276,7 @@ class CoopPunishChecker(AssumptionChecker):
         # Other values (used in estimate calculations)
         self.prev_reward = 0
         self.prev_rewards = []
+        self.all_rewards = []
 
     def check_assumptions(self, state, reward, was_used) -> None:
         our_action, their_action = state.actions[1], state.actions[0]
@@ -279,17 +301,20 @@ class CoopPunishChecker(AssumptionChecker):
 
         # Progress check
         increase = reward - self.prev_reward
+        self.all_rewards.append(increase)
         self.prev_reward = reward
         if was_used:
             self.prev_rewards.append(increase)
-        optimistic_avg = 3
-        r_max, r_min = 5, -3
-        historical_avg = (sum(self.prev_rewards) / len(self.prev_rewards)) if len(self.prev_rewards) > 0 else 0
-        self.progress = (0.5 + ((0.5 * (historical_avg - optimistic_avg)) / (r_max - optimistic_avg))) \
-            if optimistic_avg < historical_avg else ((0.5 * (historical_avg - r_min)) / (optimistic_avg - r_min))
+        # optimistic_avg = 3
+        # r_max, r_min = 5, -3
+        # historical_avg = (sum(self.prev_rewards) / len(self.prev_rewards)) if len(self.prev_rewards) > 0 else 0
+        # self.progress = (0.5 + ((0.5 * (historical_avg - optimistic_avg)) / (r_max - optimistic_avg))) \
+        #     if optimistic_avg < historical_avg else ((0.5 * (historical_avg - r_min)) / (optimistic_avg - r_min))
+        self.progress = (sum(self.prev_rewards) / len(self.prev_rewards)) if len(self.prev_rewards) > 0 else 0
+        self.overall_progress = sum(self.all_rewards) / len(self.all_rewards)
 
     def assumptions(self) -> List[float]:
-        return [self.they_cooperate, self.responds_to_punishment, self.progress]
+        return [self.they_cooperate, self.responds_to_punishment, self.progress, self.overall_progress]
 
 
 class MinimaxChecker(AssumptionChecker):
@@ -299,6 +324,7 @@ class MinimaxChecker(AssumptionChecker):
         # Assumption estimates
         self.they_attack = 1.0
         self.progress = 0.5
+        self.overall_progress = 0.5
 
         # Previous values (used in estimate calculations)
         self.prev_they_attack = 1.0
@@ -306,12 +332,14 @@ class MinimaxChecker(AssumptionChecker):
         # Other values (used in estimate calculations)
         self.prev_reward = 0
         self.prev_rewards = []
+        self.all_rewards = []
 
     def check_assumptions(self, state, reward, was_used) -> None:
         our_action, their_action = state.actions[1], state.actions[0]
         assert our_action in ACTIONS and their_action in ACTIONS
 
         increase = reward - self.prev_reward
+        self.all_rewards.append(increase)
         self.prev_reward = reward
 
         # They play the attack strategy
@@ -322,11 +350,13 @@ class MinimaxChecker(AssumptionChecker):
         # Progress check
         if was_used:
             self.prev_rewards.append(increase)
-        optimistic_avg = -1
-        r_max, r_min = 5, -3
-        historical_avg = (sum(self.prev_rewards) / len(self.prev_rewards)) if len(self.prev_rewards) > 0 else 0
-        self.progress = (0.5 + ((0.5 * (historical_avg - optimistic_avg)) / (r_max - optimistic_avg))) \
-            if optimistic_avg < historical_avg else ((0.5 * (historical_avg - r_min)) / (optimistic_avg - r_min))
+        # optimistic_avg = -1
+        # r_max, r_min = 5, -3
+        # historical_avg = (sum(self.prev_rewards) / len(self.prev_rewards)) if len(self.prev_rewards) > 0 else 0
+        # self.progress = (0.5 + ((0.5 * (historical_avg - optimistic_avg)) / (r_max - optimistic_avg))) \
+        #     if optimistic_avg < historical_avg else ((0.5 * (historical_avg - r_min)) / (optimistic_avg - r_min))
+        self.progress = (sum(self.prev_rewards) / len(self.prev_rewards)) if len(self.prev_rewards) > 0 else 0
+        self.overall_progress = sum(self.all_rewards) / len(self.all_rewards)
 
     def assumptions(self) -> List[float]:
-        return [self.they_attack, self.progress]
+        return [self.they_attack, self.progress, self.overall_progress]

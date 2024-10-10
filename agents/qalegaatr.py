@@ -63,6 +63,7 @@ class QAlegAATr(Agent):
         file_adj = '_enh' if enhanced else ''
         self.model = load_model(f'../aat/single_gen_model_eight/single_gen_model{file_adj}.keras')
         self.scaler = pickle.load(open(f'../aat/single_gen_model_eight/single_gen_scaler{file_adj}.pickle', 'rb'))
+        self.aat_scaler = pickle.load(open(f'../aat/single_gen_model_eight/single_gen_scaler_aat{file_adj}.pickle', 'rb'))
         self.train = train
         self.tracked_vector = None
         self.generators_used = set()
@@ -90,6 +91,7 @@ class QAlegAATr(Agent):
         for i in self.generator_indices:
             aat_vec.extend(self.generator_pool.assumptions(i))
         aat_vec = np.array(aat_vec).reshape(1, -1)
+        aat_vec = self.aat_scaler.transform(aat_vec)
 
         # State vector
         curr_state = self.state if self.state is not None else np.array([-1, -1, 0, 0])

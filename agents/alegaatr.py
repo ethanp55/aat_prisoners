@@ -68,6 +68,8 @@ class AlegAATr(Agent):
         best_pred, best_generator_idx, best_vector = -np.inf, None, None
 
         for generator_idx in self.generator_indices:
+            if self.models.get(generator_idx, None) is None:
+                continue
             n_rounds_since_last_use = self.n_rounds_since_used[generator_idx]
             use_emp_rewards = np.random.rand() < self.lmbda ** n_rounds_since_last_use and len(
                 self.empirical_increases[generator_idx]) > 0
@@ -92,7 +94,7 @@ class AlegAATr(Agent):
 
         self.generator_to_use_idx = best_generator_idx
         best_vector = best_vector.reshape(-1, 1)
-        n_zeroes = 4 - best_vector.shape[0]
+        n_zeroes = 5 - best_vector.shape[0]
         best_vector = np.append(best_vector, np.zeros(n_zeroes)).reshape(1, -1)
         self.tracked_vector = best_vector[0, :]
 

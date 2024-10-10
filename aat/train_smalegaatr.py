@@ -25,9 +25,11 @@ for file in os.listdir(training_data_folder):
     data = np.genfromtxt(f'{training_data_folder}{file}', delimiter=',', skip_header=0)
     is_alignment_vectors = 'vectors' in file
     is_state = 'states' in file
+    if data.shape[0] == 0:
+        continue
 
     if is_alignment_vectors:
-        n_zeroes = 4 - data.shape[1]
+        n_zeroes = 5 - data.shape[1]
         data = np.append(data, np.zeros((data.shape[0], n_zeroes)), axis=1)
         if alignment_vectors is None:
             alignment_vectors = data
@@ -72,16 +74,21 @@ print(aat_vec_val.shape, states_val.shape, y_val.shape)
 
 # State scaler
 scaler = StandardScaler()
+aat_scaler = StandardScaler()
 states_train = scaler.fit_transform(states_train)
 states_val = scaler.transform(states_val)
+aat_train = aat_scaler.fit_transform(aat_vec_train)
+aat_val = aat_scaler.transform(aat_vec_val)
 with open(f'../aat/single_gen_model/single_gen_scaler{adjustment}.pickle', 'wb') as f:
     pickle.dump(scaler, f)
+with open(f'../aat/single_gen_model/single_gen_scaler_aat{adjustment}.pickle', 'wb') as f:
+    pickle.dump(aat_scaler, f)
 
 # Create the model
 state_dim = 4
-assert aat_vec_train.shape[1] == 4
+assert aat_train.shape[1] == 5
 assert states_train.shape[1] == state_dim
-model = SingleGenModel(4, state_dim)
+model = SingleGenModel(5, state_dim)
 
 # Items needed for training
 optimizer = Adam()
@@ -95,7 +102,7 @@ n_epochs_without_change = 0
 training_losses, validation_losses = [], []
 
 # Batches
-n_batches, n_val_batches = len(aat_vec_train) // BATCH_SIZE, len(aat_vec_val) // BATCH_SIZE
+n_batches, n_val_batches = len(aat_train) // BATCH_SIZE, len(aat_val) // BATCH_SIZE
 
 for epoch in range(N_EPOCHS):
     print(f'Epoch {epoch + 1}')
@@ -106,7 +113,7 @@ for epoch in range(N_EPOCHS):
         end_idx = start_idx + BATCH_SIZE
 
         curr_aat_vec, curr_states, curr_y = \
-            aat_vec_train[start_idx:end_idx, :], states_train[start_idx:end_idx, :], y_train[start_idx:end_idx, ]
+            aat_train[start_idx:end_idx, :], states_train[start_idx:end_idx, :], y_train[start_idx:end_idx, ]
 
         with tf.GradientTape() as tape:
             predictions = model((curr_aat_vec, curr_states), training=True)
@@ -121,7 +128,7 @@ for epoch in range(N_EPOCHS):
         end_idx = start_idx + BATCH_SIZE
 
         curr_aat_vec, curr_states, curr_y = \
-            aat_vec_val[start_idx:end_idx, :], states_val[start_idx:end_idx, :], y_val[start_idx:end_idx, ]
+            aat_val[start_idx:end_idx, :], states_val[start_idx:end_idx, :], y_val[start_idx:end_idx, ]
 
         val_predictions = model((curr_aat_vec, curr_states))
         val_metric.update_state(curr_y, val_predictions)
@@ -157,6 +164,6 @@ for epoch in range(N_EPOCHS):
             break
 
     # Shuffle the training data at the end of each epoch
-    indices = np.arange(len(aat_vec_train))
+    indices = np.arange(len(aat_train))
     np.random.shuffle(indices)
-    aat_vec_train, states_train, y_train = aat_vec_train[indices, :], states_train[indices, :], y_train[indices,]
+    aat_train, states_train, y_train = aat_train[indices, :], states_train[indices, :], y_train[indices,]

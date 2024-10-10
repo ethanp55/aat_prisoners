@@ -1,10 +1,13 @@
-from aat.train_generators import N_EPOCHS, N_ROUNDS
 from agents.madqn import MADQN
-from agents.generator import Bullied, BullyPunish, CFR, Coop, CoopPunish, Minimax
+from agents.spp import SPP
+from agents.bbl import BBL
+from agents.eee import EEE
 from game.prisoners_dilemma import PrisonersDilemma
 from game.main import run_with_specified_agents
 
 
+N_EPOCHS = 10
+N_ROUNDS = [20, 30, 40, 50]
 n_training_iterations = N_EPOCHS * len(N_ROUNDS)
 progress_percentage_chunk = int(0.05 * n_training_iterations)
 curr_iteration = 0
@@ -25,12 +28,9 @@ for epoch in range(N_EPOCHS):
         game = PrisonersDilemma()
 
         list_of_opponents = []
-        list_of_opponents.append(Bullied(game, opp_idx))
-        list_of_opponents.append(BullyPunish(game, opp_idx))
-        list_of_opponents.append(CFR(game, opp_idx))
-        list_of_opponents.append(Coop(game, opp_idx))
-        list_of_opponents.append(CoopPunish(game, opp_idx))
-        list_of_opponents.append(Minimax(game, opp_idx))
+        list_of_opponents.append(SPP('SPP', game, opp_idx))
+        list_of_opponents.append(BBL('BBL', game, opp_idx))
+        list_of_opponents.append(EEE('EEE', game, opp_idx))
 
         for opponent in list_of_opponents:
             players = [opponent, madqn]

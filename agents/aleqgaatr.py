@@ -71,7 +71,7 @@ class DQN(keras.Model):
 class AleqgAATr(Agent):
     def __init__(self, game: MarkovGameMDP, player: int, learning_rate: float = 0.001, discount_factor: float = 0.9,
                  epsilon: float = 0.1, epsilon_decay: float = 0.99, replay_buffer_size: int = 50000,
-                 batch_size: int = 64, train_network: bool = False) -> None:
+                 batch_size: int = 32, train_network: bool = False) -> None:
         Agent.__init__(self, name='AleqgAATr', actions=[])
         self.player = player
         self.game = deepcopy(game)
@@ -92,7 +92,7 @@ class AleqgAATr(Agent):
         self.generator_to_use_idx = None
 
         # DQN model and target model
-        self.aat_dim = 3 + 4 + 3 + 4 + 3 + 2
+        self.aat_dim = 3 + 4 + 3 + 4 + 3 + 2 + 6
         self.state_dim = 4
         self.action_dim = len(self.generator_indices)
         self.model = DQN(self.aat_dim, self.state_dim, self.action_dim)
@@ -110,6 +110,7 @@ class AleqgAATr(Agent):
 
         # State scaler
         self.scaler = DynamicMinMaxScaler(self.state_dim)
+        self.aat_scaler = DynamicMinMaxScaler(self.aat_dim)
 
         # If we're not in training mode, load the saved/trained model
         if not self.train_network:
@@ -143,7 +144,6 @@ class AleqgAATr(Agent):
             assert self.next_aat_state is not None
             increase = reward - self.prev_reward
             self.add_experience(self.generator_to_use_idx, increase, self.next_aat_state, self.next_state, True)
-
         # print(f'Generators used: {self.generators_used}')
 
     def store_terminal_state(self, state, reward) -> None:
@@ -173,10 +173,11 @@ class AleqgAATr(Agent):
 
         else:
             scaled_state = self.scaler.scale(self.state)
-            q_values = self.model((self.aat_state, np.expand_dims(scaled_state, 0)))
+            scaled_aat_state = self.aat_scaler.scale(self.aat_state)
+            q_values = self.model((scaled_aat_state, np.expand_dims(scaled_state, 0)))
             self.generator_to_use_idx = np.argmax(q_values.numpy())
 
-            network_state = self.model((self.aat_state, np.expand_dims(scaled_state, 0)), return_transformed_state=True)
+            network_state = self.model((scaled_aat_state, np.expand_dims(scaled_state, 0)), return_transformed_state=True)
             self.tracked_vector = network_state.numpy().reshape(-1, )
 
         self.generators_used.add(self.generator_to_use_idx)
@@ -224,6 +225,7 @@ class AleqgAATr(Agent):
         scaled_state = self.scaler.scale(self.state)
         scaled_next_state = self.scaler.scale(next_state)
         self.scaler.update(next_state)
+        self.aat_scaler.update(next_state_aat)
 
         self.current_episode_experiences.append((self.aat_state, scaled_state, action, reward, next_state_aat,
                                                  scaled_next_state, done))
@@ -244,7 +246,11 @@ class AleqgAATr(Agent):
         with open('../agents/aleqgaatr_model/scaler.pickle', 'wb') as f:
             pickle.dump(self.scaler, f)
 
+        with open('../agents/aleqgaatr_model/aat_scaler.pickle', 'wb') as f:
+            pickle.dump(self.aat_scaler, f)
+
     def load_network(self) -> None:
         # Load the network and scaler
         self.model = keras.models.load_model('../agents/aleqgaatr_model/model.keras')
         self.scaler = pickle.load(open('../agents/aleqgaatr_model/scaler.pickle', 'rb'))
+        self.aat_scaler = pickle.load(open('../agents/aleqgaatr_model/aat_scaler.pickle', 'rb'))

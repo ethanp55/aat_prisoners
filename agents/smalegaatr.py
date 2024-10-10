@@ -63,6 +63,7 @@ class SMAlegAATr(Agent):
         file_adj = '_enh' if enhanced else ''
         self.model = load_model(f'../aat/single_gen_model/single_gen_model{file_adj}.keras')
         self.scaler = pickle.load(open(f'../aat/single_gen_model/single_gen_scaler{file_adj}.pickle', 'rb'))
+        self.aat_scaler = pickle.load(open(f'../aat/single_gen_model/single_gen_scaler_aat{file_adj}.pickle', 'rb'))
         self.train = train
         self.tracked_vector = None
         self.generators_used = set()
@@ -94,8 +95,9 @@ class SMAlegAATr(Agent):
 
         for generator_idx in self.generator_indices:
             aat_vec = np.array(self.generator_pool.assumptions(generator_idx)).reshape(-1, 1)
-            n_zeroes = 4 - aat_vec.shape[0]
+            n_zeroes = 5 - aat_vec.shape[0]
             aat_vec = np.append(aat_vec, np.zeros(n_zeroes)).reshape(1, -1)
+            aat_vec = self.aat_scaler.transform(aat_vec.reshape(1, -1))
             pred = self.model((aat_vec, curr_state)).numpy()[0][0]
 
             if pred > best_pred:

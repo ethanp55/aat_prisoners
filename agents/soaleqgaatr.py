@@ -70,7 +70,7 @@ class DQN(keras.Model):
 class SOAleqgAATr(Agent):
     def __init__(self, game: MarkovGameMDP, player: int, learning_rate: float = 0.001, discount_factor: float = 0.9,
                  epsilon: float = 0.1, epsilon_decay: float = 0.99, replay_buffer_size: int = 50000,
-                 batch_size: int = 64, train_network: bool = False) -> None:
+                 batch_size: int = 32, train_network: bool = False) -> None:
         Agent.__init__(self, name='SOAleqgAATr', actions=[])
         self.player = player
         self.game = deepcopy(game)
@@ -91,7 +91,7 @@ class SOAleqgAATr(Agent):
         self.generator_to_use_idx = None
 
         # DQN model and target model
-        self.aat_dim = 4
+        self.aat_dim = 5
         self.state_dim = 4
         self.action_dim = len(self.generator_indices)
         self.model = DQN(self.aat_dim, self.state_dim)
@@ -109,6 +109,7 @@ class SOAleqgAATr(Agent):
 
         # State scaler
         self.scaler = DynamicMinMaxScaler(self.state_dim)
+        self.aat_scaler = DynamicMinMaxScaler(self.aat_dim)
 
         # If we're not in training mode, load the saved/trained model
         if not self.train_network:
@@ -141,7 +142,6 @@ class SOAleqgAATr(Agent):
             assert self.next_aat_state is not None
             increase = reward - self.prev_reward
             self.add_experience(self.generator_to_use_idx, increase, self.next_aat_state, self.next_state, True)
-
         # print(f'Generators used: {self.generators_used}')
 
     def store_terminal_state(self, state, reward) -> None:
@@ -175,11 +175,12 @@ class SOAleqgAATr(Agent):
 
             for generator_idx in self.generator_indices:
                 aat_vec = self._create_aat_vec(generator_idx)
+                aat_vec = self.aat_scaler.scale(aat_vec)
                 q_val = self.model((aat_vec, np.expand_dims(scaled_state, 0))).numpy()[0][0]
                 q_vals_list.append(q_val)
             self.generator_to_use_idx = np.argmax(q_vals_list)
 
-            network_state = self.model((self._create_aat_vec(self.generator_to_use_idx), np.expand_dims(scaled_state, 0)), return_transformed_state=True)
+            network_state = self.model((self.aat_scaler.scale(self._create_aat_vec(self.generator_to_use_idx)), np.expand_dims(scaled_state, 0)), return_transformed_state=True)
             self.tracked_vector = network_state.numpy().reshape(-1, )
 
         self.generators_used.add(self.generator_to_use_idx)
@@ -227,6 +228,7 @@ class SOAleqgAATr(Agent):
         scaled_state = self.scaler.scale(self.state)
         scaled_next_state = self.scaler.scale(next_state)
         self.scaler.update(next_state)
+        self.aat_scaler.update(next_state_aat)
 
         self.current_episode_experiences.append((self.aat_state, scaled_state, action, reward, next_state_aat,
                                                  scaled_next_state, done))
@@ -247,7 +249,11 @@ class SOAleqgAATr(Agent):
         with open('../agents/soaleqgaatr_model/scaler.pickle', 'wb') as f:
             pickle.dump(self.scaler, f)
 
+        with open('../agents/soaleqgaatr_model/aat_scaler.pickle', 'wb') as f:
+            pickle.dump(self.aat_scaler, f)
+
     def load_network(self) -> None:
         # Load the network and scaler
         self.model = keras.models.load_model('../agents/soaleqgaatr_model/model.keras')
         self.scaler = pickle.load(open('../agents/soaleqgaatr_model/scaler.pickle', 'rb'))
+        self.aat_scaler = pickle.load(open('../agents/soaleqgaatr_model/aat_scaler.pickle', 'rb'))

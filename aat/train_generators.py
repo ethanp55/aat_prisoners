@@ -1,9 +1,11 @@
 from agents.alegaatr import AlegAATr
-from agents.generator import Bullied, BullyPunish, CFR, Coop, CoopPunish, Minimax
 from agents.generator_pool import GeneratorPool
 from agents.qalegaatr import QAlegAATr
 from agents.rawo import RawO
 from agents.smalegaatr import SMAlegAATr
+from agents.spp import SPP
+from agents.bbl import BBL
+from agents.eee import EEE
 from copy import deepcopy
 from game.main import run_with_specified_agents
 from game.prisoners_dilemma import PrisonersDilemma
@@ -114,11 +116,11 @@ progress_percentage_chunk = int(0.05 * n_training_iterations)
 curr_iteration = 0
 print(n_training_iterations, progress_percentage_chunk)
 
-# # Reset any existing training files (opening a file in write mode will truncate it)
-# for file in os.listdir('../aat/training_data/'):
-#     if (NO_BASELINE and 'sin_c' in file) or (not NO_BASELINE and 'sin_c' not in file):
-#         with open(f'../aat/training_data/{file}', 'w', newline='') as _:
-#             pass
+# Reset any existing training files (opening a file in write mode will truncate it)
+for file in os.listdir('../aat/training_data/'):
+    if (NO_BASELINE and 'sin_c' in file) or (not NO_BASELINE and 'sin_c' not in file):
+        with open(f'../aat/training_data/{file}', 'w', newline='') as _:
+            pass
 
 
 # Run the training process
@@ -134,12 +136,9 @@ for epoch in range(N_EPOCHS):
         game = PrisonersDilemma()
 
         list_of_opponents = []
-        list_of_opponents.append(Bullied(game, opp_idx))
-        list_of_opponents.append(BullyPunish(game, opp_idx))
-        list_of_opponents.append(CFR(game, opp_idx))
-        list_of_opponents.append(Coop(game, opp_idx))
-        list_of_opponents.append(CoopPunish(game, opp_idx))
-        list_of_opponents.append(Minimax(game, opp_idx))
+        list_of_opponents.append(SPP('SPP', game, opp_idx))
+        list_of_opponents.append(BBL('BBL', game, opp_idx))
+        list_of_opponents.append(EEE('EEE', game, opp_idx))
 
         for opponent in list_of_opponents:
             agents_to_train_on = []

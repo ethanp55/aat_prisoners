@@ -51,7 +51,7 @@ class DQN(keras.Model):
 class RAlegAATr(Agent):
     def __init__(self, game: MarkovGameMDP, player: int, learning_rate: float = 0.001, discount_factor: float = 0.9,
                  epsilon: float = 0.1, epsilon_decay: float = 0.99, replay_buffer_size: int = 50000,
-                 batch_size: int = 64, train_network: bool = False) -> None:
+                 batch_size: int = 32, train_network: bool = False) -> None:
         Agent.__init__(self, name='RAlegAATr', actions=[])
         self.player = player
         self.game = deepcopy(game)
@@ -72,7 +72,7 @@ class RAlegAATr(Agent):
         self.generator_to_use_idx = None
 
         # DQN model and target model
-        self.state_dim = 3 + 4 + 3 + 4 + 3 + 2
+        self.state_dim = 3 + 4 + 3 + 4 + 3 + 2 + 6
         self.action_dim = len(self.generator_indices)
         self.model = DQN(self.state_dim, self.action_dim)
         self.target_model = DQN(self.state_dim, self.action_dim)
@@ -121,7 +121,6 @@ class RAlegAATr(Agent):
             assert self.next_state is not None
             increase = reward - self.prev_reward
             self.add_experience(self.generator_to_use_idx, increase, self.next_state, True)
-
         # print(f'Generators used: {self.generators_used}')
 
     def store_terminal_state(self, state, reward) -> None:
