@@ -9,7 +9,7 @@ from utils.utils import P1
 
 def run_with_specified_agents(players: List[Agent], player_indices: List[int], n_rounds: int,
                               results_file: Optional[str] = None, generator_file: Optional[str] = None,
-                              vector_file: Optional[str] = None) -> None:
+                              vector_file: Optional[str] = None) -> List[float]:
     assert len(players) == len(player_indices) == 2
     assert n_rounds > 0
 
@@ -81,3 +81,6 @@ def run_with_specified_agents(players: List[Agent], player_indices: List[int], n
         with open(results_file, 'a', newline='') as f:
             writer = csv.writer(f)
             writer.writerow(rewards)
+
+    # Return final rewards (for any caller that needs them)
+    return rewards

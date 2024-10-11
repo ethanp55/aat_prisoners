@@ -9,6 +9,7 @@ QAlegAATr,40.csv,selfplay,240.0,120.0
 QAlegAATr,40.csv,selfplay,240.0,120.0
 QAlegAATr,40.csv,selfplay,240.0,120.0
 QAlegAATr,40.csv,selfplay,240.0,120.0
+PPO,40.csv,bullypunish,-16.0,-72.0
 DQN,60.csv,selfplay,-120.0,-60.0
 DQN,60.csv,selfplay,-120.0,-60.0
 DQN,60.csv,selfplay,-120.0,-60.0
@@ -84,6 +85,7 @@ SOAleqgAATr,20.csv,cooppunish,0.0,40.0
 SOAleqgAATr,20.csv,cooppunish,0.0,40.0
 SOAleqgAATr,20.csv,cooppunish,0.0,40.0
 SOAleqgAATr,20.csv,cooppunish,0.0,40.0
+PPO,40.csv,greedyneg,0.0,-80.0
 MADQN,50.csv,cooppunish,0.0,100.0
 MADQN,50.csv,cooppunish,0.0,100.0
 MADQN,50.csv,cooppunish,0.0,100.0
@@ -104,6 +106,7 @@ QAlegAATr,40.csv,cooppunish,164.0,6.0
 QAlegAATr,40.csv,cooppunish,164.0,6.0
 QAlegAATr,40.csv,cooppunish,164.0,6.0
 QAlegAATr,40.csv,cooppunish,164.0,6.0
+PPO,30.csv,minimax,0.0,-60.0
 QAlegAATr,40.csv,bullied,240.0,120.0
 QAlegAATr,40.csv,bullied,240.0,120.0
 QAlegAATr,40.csv,bullied,240.0,120.0
@@ -134,6 +137,7 @@ RAlegAATr,30.csv,eee,0.0,60.0
 RAlegAATr,30.csv,eee,-12.0,42.0
 RAlegAATr,30.csv,eee,-20.0,30.0
 RAlegAATr,30.csv,eee,-8.0,48.0
+PPO,50.csv,roundnum2,40.0,-48.0
 DQN,60.csv,eee,-40.0,60.0
 DQN,60.csv,eee,24.0,156.0
 DQN,60.csv,eee,-24.0,84.0
@@ -159,6 +163,7 @@ AleqgAATr,10.csv,spp,20.0,50.0
 AleqgAATr,10.csv,spp,20.0,50.0
 AleqgAATr,10.csv,spp,20.0,50.0
 AleqgAATr,10.csv,spp,-20.0,-10.0
+PPO,60.csv,coop,200.0,260.0
 AleqgAATr,30.csv,roundnum2,-40.0,0.0
 AleqgAATr,30.csv,roundnum2,-48.0,-12.0
 AleqgAATr,30.csv,roundnum2,-44.0,-6.0
@@ -174,6 +179,7 @@ SOAleqgAATr,50.csv,eee,28.0,46.0
 SOAleqgAATr,50.csv,eee,48.0,60.0
 SOAleqgAATr,50.csv,eee,20.0,2.0
 SOAleqgAATr,50.csv,eee,160.0,44.0
+PPO,20.csv,cooppunish,36.0,30.0
 AlegAATr,30.csv,bbl,-40.0,-32.0
 AlegAATr,30.csv,bbl,-40.0,-32.0
 AlegAATr,30.csv,bbl,-52.0,-34.0
@@ -314,6 +320,7 @@ RAlegAATr,60.csv,bbl,-116.0,-54.0
 RAlegAATr,60.csv,bbl,-120.0,-60.0
 RAlegAATr,60.csv,bbl,-120.0,-60.0
 RAlegAATr,60.csv,bbl,-120.0,-60.0
+PPO,50.csv,selfplay,88.0,-24.0
 QAlegAATr,20.csv,random,28.0,34.0
 QAlegAATr,20.csv,random,36.0,22.0
 QAlegAATr,20.csv,random,36.0,-10.0
@@ -394,6 +401,7 @@ AleqgAATr,20.csv,roundnum,40.0,100.0
 AleqgAATr,20.csv,roundnum,40.0,100.0
 AleqgAATr,20.csv,roundnum,40.0,100.0
 AleqgAATr,20.csv,roundnum,40.0,100.0
+PPO,50.csv,random,68.0,26.0
 AleqgAATr,50.csv,cfr,-100.0,-50.0
 AleqgAATr,50.csv,cfr,-100.0,-50.0
 AleqgAATr,50.csv,cfr,-100.0,-50.0
@@ -404,6 +412,7 @@ RAlegAATr,50.csv,coopgreedy,52.0,178.0
 RAlegAATr,50.csv,coopgreedy,36.0,154.0
 RAlegAATr,50.csv,coopgreedy,56.0,184.0
 RAlegAATr,50.csv,coopgreedy,48.0,172.0
+PPO,30.csv,cfr,4.0,-62.0
 SMAlegAATr,20.csv,coop,112.0,64.0
 SMAlegAATr,20.csv,coop,112.0,64.0
 SMAlegAATr,20.csv,coop,112.0,64.0
@@ -429,6 +438,7 @@ AlegAATr,60.csv,eee,244.0,238.0
 AlegAATr,60.csv,eee,44.0,106.0
 AlegAATr,60.csv,eee,-72.0,-4.0
 AlegAATr,60.csv,eee,-76.0,-10.0
+PPO,20.csv,bbl,8.0,-44.0
 RDQN,40.csv,roundnum2,-44.0,14.0
 RDQN,40.csv,roundnum2,-24.0,44.0
 RDQN,40.csv,roundnum2,-52.0,2.0
@@ -494,6 +504,7 @@ SMAlegAATr,40.csv,roundnum2,-28.0,22.0
 SMAlegAATr,40.csv,roundnum2,-32.0,16.0
 SMAlegAATr,40.csv,roundnum2,-24.0,-28.0
 SMAlegAATr,40.csv,roundnum2,-32.0,16.0
+PPO,20.csv,bullied,72.0,84.0
 MADQN,30.csv,random,-16.0,36.0
 MADQN,30.csv,random,0.0,60.0
 MADQN,30.csv,random,-4.0,54.0
@@ -604,6 +615,8 @@ SOAleqgAATr,60.csv,greedyneg,44.0,34.0
 SOAleqgAATr,60.csv,greedyneg,44.0,34.0
 SOAleqgAATr,60.csv,greedyneg,44.0,34.0
 SOAleqgAATr,60.csv,greedyneg,44.0,34.0
+PPO,30.csv,bullied,108.0,126.0
+PPO,60.csv,roundnum,64.0,40.0
 QAlegAATr,50.csv,bullypunish,-52.0,-74.0
 QAlegAATr,50.csv,bullypunish,-52.0,-74.0
 QAlegAATr,50.csv,bullypunish,-52.0,-74.0
@@ -654,6 +667,7 @@ MADQN,50.csv,cfr,-100.0,-50.0
 MADQN,50.csv,cfr,-100.0,-50.0
 MADQN,50.csv,cfr,-100.0,-50.0
 MADQN,50.csv,cfr,-100.0,-50.0
+PPO,10.csv,coopgreedy,24.0,32.0
 SMAlegAATr,20.csv,spp,-36.0,-22.0
 SMAlegAATr,20.csv,spp,112.0,64.0
 SMAlegAATr,20.csv,spp,-36.0,-22.0
@@ -664,6 +678,7 @@ RDQN,40.csv,greedyneg,76.0,194.0
 RDQN,40.csv,greedyneg,76.0,194.0
 RDQN,40.csv,greedyneg,76.0,194.0
 RDQN,40.csv,greedyneg,76.0,194.0
+PPO,30.csv,bbl,-8.0,-56.0
 AlegAATr,10.csv,random,32.0,20.0
 AlegAATr,10.csv,random,24.0,0.0
 AlegAATr,10.csv,random,4.0,2.0
@@ -674,6 +689,7 @@ AleqgAATr,10.csv,selfplay,-20.0,-10.0
 AleqgAATr,10.csv,selfplay,-20.0,-10.0
 AleqgAATr,10.csv,selfplay,-20.0,-10.0
 AleqgAATr,10.csv,selfplay,-20.0,-10.0
+PPO,20.csv,cfr,-8.0,-36.0
 SMAlegAATr,30.csv,coop,172.0,94.0
 SMAlegAATr,30.csv,coop,172.0,94.0
 SMAlegAATr,30.csv,coop,172.0,94.0
@@ -724,6 +740,7 @@ AleqgAATr,30.csv,roundnum,36.0,114.0
 AleqgAATr,30.csv,roundnum,36.0,114.0
 AleqgAATr,30.csv,roundnum,36.0,114.0
 AleqgAATr,30.csv,roundnum,36.0,114.0
+PPO,40.csv,random,60.0,74.0
 DQN,50.csv,coopgreedy,48.0,172.0
 DQN,50.csv,coopgreedy,60.0,190.0
 DQN,50.csv,coopgreedy,60.0,190.0
@@ -784,6 +801,7 @@ DQN,30.csv,cfr,-60.0,-30.0
 DQN,30.csv,cfr,-60.0,-30.0
 DQN,30.csv,cfr,-60.0,-30.0
 DQN,30.csv,cfr,-60.0,-30.0
+PPO,40.csv,selfplay,60.0,2.0
 QAlegAATr,30.csv,random,120.0,0.0
 QAlegAATr,30.csv,random,80.0,12.0
 QAlegAATr,30.csv,random,8.0,56.0
@@ -914,6 +932,7 @@ AlegAATr,20.csv,bbl,-20.0,-22.0
 AlegAATr,20.csv,bbl,-32.0,-24.0
 AlegAATr,20.csv,bbl,-20.0,-22.0
 AlegAATr,20.csv,bbl,-32.0,-24.0
+PPO,60.csv,eee,132.0,38.0
 RawO,50.csv,spp,144.0,228.0
 RawO,50.csv,spp,36.0,90.0
 RawO,50.csv,spp,36.0,90.0
@@ -949,6 +968,7 @@ RDQN,10.csv,spp,20.0,50.0
 RDQN,10.csv,spp,20.0,50.0
 RDQN,10.csv,spp,20.0,50.0
 RDQN,10.csv,spp,-20.0,-10.0
+PPO,30.csv,cooppunish,68.0,34.0
 AlegAATr,10.csv,minimax,-12.0,-14.0
 AlegAATr,10.csv,minimax,-12.0,-14.0
 AlegAATr,10.csv,minimax,-12.0,-14.0
@@ -959,6 +979,8 @@ AleqgAATr,20.csv,roundnum2,-40.0,-20.0
 AleqgAATr,20.csv,roundnum2,-40.0,-20.0
 AleqgAATr,20.csv,roundnum2,-40.0,-20.0
 AleqgAATr,20.csv,roundnum2,-40.0,-20.0
+PPO,40.csv,roundnum2,24.0,-44.0
+PPO,60.csv,spp,228.0,246.0
 RAlegAATr,60.csv,cooppunish,0.0,120.0
 RAlegAATr,60.csv,cooppunish,0.0,120.0
 RAlegAATr,60.csv,cooppunish,0.0,120.0
@@ -1029,6 +1051,7 @@ MADQN,10.csv,spp,20.0,50.0
 MADQN,10.csv,spp,20.0,50.0
 MADQN,10.csv,spp,20.0,50.0
 MADQN,10.csv,spp,-20.0,-10.0
+PPO,20.csv,minimax,-16.0,-32.0
 RDQN,30.csv,random,-4.0,54.0
 RDQN,30.csv,random,20.0,90.0
 RDQN,30.csv,random,0.0,60.0
@@ -1049,6 +1072,7 @@ SOAleqgAATr,30.csv,cooppunish,0.0,60.0
 SOAleqgAATr,30.csv,cooppunish,0.0,60.0
 SOAleqgAATr,30.csv,cooppunish,0.0,60.0
 SOAleqgAATr,30.csv,cooppunish,0.0,60.0
+PPO,50.csv,greedyneg,12.0,-98.0
 MADQN,40.csv,cooppunish,0.0,80.0
 MADQN,40.csv,cooppunish,0.0,80.0
 MADQN,40.csv,cooppunish,0.0,80.0
@@ -1109,6 +1133,7 @@ QAlegAATr,50.csv,selfplay,300.0,150.0
 QAlegAATr,50.csv,selfplay,300.0,150.0
 QAlegAATr,50.csv,selfplay,300.0,150.0
 QAlegAATr,50.csv,selfplay,300.0,150.0
+PPO,50.csv,bullypunish,-16.0,-92.0
 AlegAATr,30.csv,cooppunish,40.0,48.0
 AlegAATr,30.csv,cooppunish,40.0,48.0
 AlegAATr,30.csv,cooppunish,40.0,48.0
@@ -1169,6 +1194,7 @@ QAlegAATr,40.csv,random,120.0,-12.0
 QAlegAATr,40.csv,random,192.0,48.0
 QAlegAATr,40.csv,random,76.0,82.0
 QAlegAATr,40.csv,random,84.0,14.0
+PPO,30.csv,selfplay,24.0,0.0
 AlegAATr,50.csv,roundnum2,-36.0,30.0
 AlegAATr,50.csv,roundnum2,-36.0,30.0
 AlegAATr,50.csv,roundnum2,-44.0,18.0
@@ -1244,6 +1270,7 @@ DQN,50.csv,coop,100.0,250.0
 DQN,50.csv,coop,100.0,250.0
 DQN,50.csv,coop,100.0,250.0
 DQN,50.csv,coop,100.0,250.0
+PPO,30.csv,random,68.0,26.0
 AleqgAATr,40.csv,roundnum,16.0,104.0
 AleqgAATr,40.csv,roundnum,16.0,104.0
 AleqgAATr,40.csv,roundnum,16.0,104.0
@@ -1284,6 +1311,7 @@ SMAlegAATr,10.csv,bullied,52.0,34.0
 SMAlegAATr,10.csv,bullied,52.0,34.0
 SMAlegAATr,10.csv,bullied,52.0,34.0
 SMAlegAATr,10.csv,bullied,52.0,34.0
+PPO,50.csv,cfr,-4.0,-98.0
 RAlegAATr,20.csv,coop,40.0,100.0
 RAlegAATr,20.csv,coop,40.0,100.0
 RAlegAATr,20.csv,coop,40.0,100.0
@@ -1304,6 +1332,7 @@ AleqgAATr,60.csv,selfplay,-120.0,-60.0
 AleqgAATr,60.csv,selfplay,-120.0,-60.0
 AleqgAATr,60.csv,selfplay,-120.0,-60.0
 AleqgAATr,60.csv,selfplay,-120.0,-60.0
+PPO,40.csv,bbl,-12.0,-74.0
 RDQN,30.csv,greedyneg,56.0,144.0
 RDQN,30.csv,greedyneg,56.0,144.0
 RDQN,30.csv,greedyneg,56.0,144.0
@@ -1314,6 +1343,7 @@ RDQN,20.csv,roundnum2,-40.0,-20.0
 RDQN,20.csv,roundnum2,-40.0,-20.0
 RDQN,20.csv,roundnum2,-40.0,-20.0
 RDQN,20.csv,roundnum2,-40.0,-20.0
+PPO,60.csv,coopgreedy,160.0,168.0
 MADQN,20.csv,cfr,-40.0,-20.0
 MADQN,20.csv,cfr,-40.0,-20.0
 MADQN,20.csv,cfr,-40.0,-20.0
@@ -1359,6 +1389,7 @@ MADQN,50.csv,selfplay,-100.0,-50.0
 MADQN,50.csv,selfplay,-100.0,-50.0
 MADQN,50.csv,selfplay,-100.0,-50.0
 MADQN,50.csv,selfplay,-100.0,-50.0
+PPO,10.csv,roundnum,40.0,40.0
 SOAleqgAATr,10.csv,greedyneg,28.0,38.0
 SOAleqgAATr,10.csv,greedyneg,28.0,38.0
 SOAleqgAATr,10.csv,greedyneg,28.0,38.0
@@ -1369,6 +1400,7 @@ SMAlegAATr,20.csv,roundnum2,-36.0,-22.0
 SMAlegAATr,20.csv,roundnum2,-36.0,-22.0
 SMAlegAATr,20.csv,roundnum2,-36.0,-22.0
 SMAlegAATr,20.csv,roundnum2,-36.0,-22.0
+PPO,40.csv,bullied,148.0,166.0
 MADQN,50.csv,random,-4.0,94.0
 MADQN,50.csv,random,28.0,142.0
 MADQN,50.csv,random,-8.0,88.0
@@ -1419,6 +1451,7 @@ QAlegAATr,20.csv,selfplay,120.0,60.0
 QAlegAATr,20.csv,selfplay,120.0,60.0
 QAlegAATr,20.csv,selfplay,120.0,60.0
 QAlegAATr,20.csv,selfplay,120.0,60.0
+PPO,20.csv,bullypunish,-4.0,-38.0
 MADQN,60.csv,bullypunish,-120.0,-60.0
 MADQN,60.csv,bullypunish,-120.0,-60.0
 MADQN,60.csv,bullypunish,-120.0,-60.0
@@ -1499,6 +1532,7 @@ MADQN,30.csv,cooppunish,0.0,60.0
 MADQN,30.csv,cooppunish,0.0,60.0
 MADQN,30.csv,cooppunish,0.0,60.0
 MADQN,30.csv,cooppunish,0.0,60.0
+PPO,20.csv,greedyneg,-4.0,-38.0
 SOAleqgAATr,40.csv,cooppunish,0.0,80.0
 SOAleqgAATr,40.csv,cooppunish,0.0,80.0
 SOAleqgAATr,40.csv,cooppunish,0.0,80.0
@@ -1519,6 +1553,7 @@ QAlegAATr,20.csv,cooppunish,84.0,6.0
 QAlegAATr,20.csv,cooppunish,84.0,6.0
 QAlegAATr,20.csv,cooppunish,84.0,6.0
 QAlegAATr,20.csv,cooppunish,84.0,6.0
+PPO,50.csv,minimax,-16.0,-92.0
 MADQN,60.csv,spp,120.0,300.0
 MADQN,60.csv,spp,-120.0,-60.0
 MADQN,60.csv,spp,120.0,300.0
@@ -1559,6 +1594,8 @@ RAlegAATr,10.csv,cooppunish,0.0,20.0
 RAlegAATr,10.csv,cooppunish,0.0,20.0
 RAlegAATr,10.csv,cooppunish,0.0,20.0
 RAlegAATr,10.csv,cooppunish,0.0,20.0
+PPO,10.csv,spp,-8.0,-16.0
+PPO,30.csv,roundnum2,0.0,-36.0
 AleqgAATr,30.csv,minimax,-60.0,-30.0
 AleqgAATr,30.csv,minimax,-60.0,-30.0
 AleqgAATr,30.csv,minimax,-60.0,-30.0
@@ -1584,6 +1621,7 @@ AleqgAATr,50.csv,roundnum2,-48.0,28.0
 AleqgAATr,50.csv,roundnum2,-56.0,16.0
 AleqgAATr,50.csv,roundnum2,-28.0,58.0
 AleqgAATr,50.csv,roundnum2,-56.0,16.0
+PPO,40.csv,cooppunish,72.0,44.0
 SOAleqgAATr,30.csv,eee,32.0,52.0
 SOAleqgAATr,30.csv,eee,0.0,4.0
 SOAleqgAATr,30.csv,eee,20.0,34.0
@@ -1609,6 +1647,7 @@ AlegAATr,50.csv,bbl,-80.0,-52.0
 AlegAATr,50.csv,bbl,-92.0,-54.0
 AlegAATr,50.csv,bbl,-80.0,-52.0
 AlegAATr,50.csv,bbl,-92.0,-54.0
+PPO,10.csv,eee,8.0,-24.0
 RawO,20.csv,spp,0.0,-40.0
 RawO,20.csv,spp,48.0,96.0
 RawO,20.csv,spp,0.0,-40.0
@@ -1764,6 +1803,7 @@ RawO,10.csv,roundnum2,0.0,-20.0
 RawO,10.csv,roundnum2,0.0,-20.0
 RawO,10.csv,roundnum2,0.0,-20.0
 RawO,10.csv,roundnum2,0.0,-20.0
+PPO,50.csv,cooppunish,92.0,62.0
 SOAleqgAATr,20.csv,eee,-4.0,18.0
 SOAleqgAATr,20.csv,eee,0.0,0.0
 SOAleqgAATr,20.csv,eee,-12.0,14.0
@@ -1774,6 +1814,7 @@ AleqgAATr,50.csv,greedyneg,96.0,244.0
 AleqgAATr,50.csv,greedyneg,96.0,244.0
 AleqgAATr,50.csv,greedyneg,96.0,244.0
 AleqgAATr,50.csv,greedyneg,96.0,244.0
+PPO,10.csv,coop,32.0,44.0
 AleqgAATr,40.csv,roundnum2,-56.0,-4.0
 AleqgAATr,40.csv,roundnum2,-60.0,-10.0
 AleqgAATr,40.csv,roundnum2,-32.0,32.0
@@ -1784,6 +1825,7 @@ AleqgAATr,60.csv,spp,-120.0,-60.0
 AleqgAATr,60.csv,spp,120.0,300.0
 AleqgAATr,60.csv,spp,-120.0,-60.0
 AleqgAATr,60.csv,spp,-120.0,-60.0
+PPO,20.csv,roundnum2,-24.0,-28.0
 DQN,10.csv,eee,20.0,50.0
 DQN,10.csv,eee,0.0,20.0
 DQN,10.csv,eee,4.0,26.0
@@ -1844,6 +1886,7 @@ QAlegAATr,30.csv,cooppunish,124.0,6.0
 QAlegAATr,30.csv,cooppunish,124.0,6.0
 QAlegAATr,30.csv,cooppunish,124.0,6.0
 QAlegAATr,30.csv,cooppunish,124.0,6.0
+PPO,40.csv,minimax,-16.0,-72.0
 DQN,10.csv,cooppunish,0.0,20.0
 DQN,10.csv,cooppunish,0.0,20.0
 DQN,10.csv,cooppunish,0.0,20.0
@@ -1859,6 +1902,7 @@ MADQN,20.csv,cooppunish,0.0,40.0
 MADQN,20.csv,cooppunish,0.0,40.0
 MADQN,20.csv,cooppunish,0.0,40.0
 MADQN,20.csv,cooppunish,0.0,40.0
+PPO,30.csv,greedyneg,28.0,-2.0
 SOAleqgAATr,50.csv,cooppunish,0.0,100.0
 SOAleqgAATr,50.csv,cooppunish,0.0,100.0
 SOAleqgAATr,50.csv,cooppunish,0.0,100.0
@@ -1924,6 +1968,7 @@ QAlegAATr,30.csv,selfplay,180.0,90.0
 QAlegAATr,30.csv,selfplay,180.0,90.0
 QAlegAATr,30.csv,selfplay,180.0,90.0
 QAlegAATr,30.csv,selfplay,180.0,90.0
+PPO,30.csv,bullypunish,12.0,-66.0
 SMAlegAATr,10.csv,minimax,-16.0,-12.0
 SMAlegAATr,10.csv,minimax,-16.0,-12.0
 SMAlegAATr,10.csv,minimax,-16.0,-12.0
@@ -1999,6 +2044,7 @@ SMAlegAATr,30.csv,roundnum2,-36.0,-10.0
 SMAlegAATr,30.csv,roundnum2,-28.0,-22.0
 SMAlegAATr,30.csv,roundnum2,-32.0,-4.0
 SMAlegAATr,30.csv,roundnum2,-52.0,-26.0
+PPO,50.csv,bullied,180.0,210.0
 QAlegAATr,30.csv,bullypunish,-12.0,-54.0
 QAlegAATr,30.csv,bullypunish,-12.0,-54.0
 QAlegAATr,30.csv,bullypunish,-12.0,-54.0
@@ -2069,6 +2115,7 @@ AlegAATr,10.csv,eee,44.0,38.0
 AlegAATr,10.csv,eee,44.0,38.0
 AlegAATr,10.csv,eee,44.0,38.0
 AlegAATr,10.csv,eee,24.0,16.0
+PPO,50.csv,bbl,4.0,-102.0
 RDQN,20.csv,greedyneg,36.0,94.0
 RDQN,20.csv,greedyneg,36.0,94.0
 RDQN,20.csv,greedyneg,36.0,94.0
@@ -2079,6 +2126,7 @@ SMAlegAATr,50.csv,coop,292.0,154.0
 SMAlegAATr,50.csv,coop,292.0,154.0
 SMAlegAATr,50.csv,coop,292.0,154.0
 SMAlegAATr,50.csv,coop,292.0,154.0
+PPO,40.csv,cfr,4.0,-82.0
 RAlegAATr,30.csv,coop,60.0,150.0
 RAlegAATr,30.csv,coop,60.0,150.0
 RAlegAATr,30.csv,coop,60.0,150.0
@@ -2099,6 +2147,7 @@ DQN,40.csv,coop,80.0,200.0
 DQN,40.csv,coop,80.0,200.0
 DQN,40.csv,coop,80.0,200.0
 DQN,40.csv,coop,80.0,200.0
+PPO,20.csv,random,48.0,24.0
 AleqgAATr,50.csv,roundnum,-4.0,94.0
 AleqgAATr,50.csv,roundnum,-4.0,94.0
 AleqgAATr,50.csv,roundnum,-4.0,94.0
@@ -2169,6 +2218,7 @@ QAlegAATr,50.csv,random,60.0,94.0
 QAlegAATr,50.csv,random,60.0,22.0
 QAlegAATr,50.csv,random,164.0,-14.0
 QAlegAATr,50.csv,random,188.0,-2.0
+PPO,20.csv,selfplay,28.0,10.0
 AlegAATr,40.csv,roundnum2,-44.0,-2.0
 AlegAATr,40.csv,roundnum2,-48.0,-8.0
 AlegAATr,40.csv,roundnum2,-36.0,10.0
@@ -2289,6 +2339,7 @@ SOAleqgAATr,50.csv,cfr,-92.0,-54.0
 SOAleqgAATr,50.csv,cfr,-92.0,-54.0
 SOAleqgAATr,50.csv,cfr,-92.0,-54.0
 SOAleqgAATr,50.csv,cfr,-92.0,-54.0
+PPO,60.csv,bullied,208.0,256.0
 SOAleqgAATr,30.csv,greedyneg,48.0,44.0
 SOAleqgAATr,30.csv,greedyneg,48.0,44.0
 SOAleqgAATr,30.csv,greedyneg,48.0,44.0
@@ -2299,6 +2350,7 @@ MADQN,20.csv,coop,40.0,100.0
 MADQN,20.csv,coop,40.0,100.0
 MADQN,20.csv,coop,40.0,100.0
 MADQN,20.csv,coop,40.0,100.0
+PPO,30.csv,roundnum,72.0,96.0
 SOAleqgAATr,20.csv,random,24.0,52.0
 SOAleqgAATr,20.csv,random,8.0,44.0
 SOAleqgAATr,20.csv,random,0.0,32.0
@@ -2329,6 +2381,7 @@ QAlegAATr,10.csv,bbl,0.0,-20.0
 QAlegAATr,10.csv,bbl,0.0,-20.0
 QAlegAATr,10.csv,bbl,0.0,-20.0
 QAlegAATr,10.csv,bbl,0.0,-20.0
+PPO,40.csv,coopgreedy,104.0,108.0
 SOAleqgAATr,50.csv,minimax,-92.0,-54.0
 SOAleqgAATr,50.csv,minimax,-92.0,-54.0
 SOAleqgAATr,50.csv,minimax,-92.0,-54.0
@@ -2344,6 +2397,7 @@ AlegAATr,20.csv,eee,-20.0,-6.0
 AlegAATr,20.csv,eee,-32.0,-24.0
 AlegAATr,20.csv,eee,-32.0,-24.0
 AlegAATr,20.csv,eee,-32.0,-24.0
+PPO,60.csv,bbl,-40.0,-92.0
 AleqgAATr,40.csv,selfplay,-80.0,-40.0
 AleqgAATr,40.csv,selfplay,-80.0,-40.0
 AleqgAATr,40.csv,selfplay,-80.0,-40.0
@@ -2384,6 +2438,7 @@ AleqgAATr,10.csv,cfr,-20.0,-10.0
 AleqgAATr,10.csv,cfr,-20.0,-10.0
 AleqgAATr,10.csv,cfr,-20.0,-10.0
 AleqgAATr,10.csv,cfr,-20.0,-10.0
+PPO,10.csv,random,32.0,28.0
 AleqgAATr,60.csv,roundnum,-24.0,84.0
 AleqgAATr,60.csv,roundnum,-24.0,84.0
 AleqgAATr,60.csv,roundnum,-24.0,84.0
@@ -2444,6 +2499,7 @@ RawO,40.csv,cfr,0.0,-80.0
 RawO,40.csv,cfr,0.0,-80.0
 RawO,40.csv,cfr,0.0,-80.0
 RawO,40.csv,cfr,0.0,-80.0
+PPO,10.csv,selfplay,20.0,2.0
 RAlegAATr,20.csv,bbl,-40.0,-20.0
 RAlegAATr,20.csv,bbl,-36.0,-14.0
 RAlegAATr,20.csv,bbl,-40.0,-20.0
@@ -2584,6 +2640,7 @@ DQN,20.csv,spp,40.0,100.0
 DQN,20.csv,spp,-40.0,-20.0
 DQN,20.csv,spp,-40.0,-20.0
 DQN,20.csv,spp,0.0,40.0
+PPO,30.csv,eee,84.0,82.0
 SMAlegAATr,30.csv,random,116.0,18.0
 SMAlegAATr,30.csv,random,16.0,76.0
 SMAlegAATr,30.csv,random,0.0,60.0
@@ -2594,6 +2651,7 @@ AleqgAATr,60.csv,greedyneg,116.0,294.0
 AleqgAATr,60.csv,greedyneg,116.0,294.0
 AleqgAATr,60.csv,greedyneg,116.0,294.0
 AleqgAATr,60.csv,greedyneg,116.0,294.0
+PPO,60.csv,cooppunish,96.0,80.0
 RDQN,40.csv,spp,80.0,200.0
 RDQN,40.csv,spp,-80.0,-40.0
 RDQN,40.csv,spp,80.0,200.0
@@ -2604,6 +2662,7 @@ SOAleqgAATr,10.csv,eee,-16.0,-12.0
 SOAleqgAATr,10.csv,eee,-8.0,8.0
 SOAleqgAATr,10.csv,eee,-16.0,-12.0
 SOAleqgAATr,10.csv,eee,-8.0,0.0
+PPO,20.csv,coop,88.0,76.0
 AlegAATr,40.csv,minimax,-72.0,-44.0
 AlegAATr,40.csv,minimax,-72.0,-44.0
 AlegAATr,40.csv,minimax,-72.0,-44.0
@@ -2629,6 +2688,8 @@ AlegAATr,30.csv,coop,124.0,118.0
 AlegAATr,30.csv,coop,124.0,118.0
 AlegAATr,30.csv,coop,124.0,118.0
 AlegAATr,30.csv,coop,124.0,118.0
+PPO,30.csv,spp,116.0,122.0
+PPO,10.csv,roundnum2,12.0,-26.0
 DQN,20.csv,eee,-8.0,28.0
 DQN,20.csv,eee,4.0,46.0
 DQN,20.csv,eee,-32.0,-8.0
@@ -2809,6 +2870,7 @@ MADQN,50.csv,bullypunish,-100.0,-50.0
 MADQN,50.csv,bullypunish,-100.0,-50.0
 MADQN,50.csv,bullypunish,-100.0,-50.0
 MADQN,50.csv,bullypunish,-100.0,-50.0
+PPO,10.csv,bullypunish,-8.0,-16.0
 QAlegAATr,10.csv,selfplay,60.0,30.0
 QAlegAATr,10.csv,selfplay,60.0,30.0
 QAlegAATr,10.csv,selfplay,60.0,30.0
@@ -2864,6 +2926,7 @@ AleqgAATr,30.csv,coopgreedy,32.0,108.0
 AleqgAATr,30.csv,coopgreedy,24.0,96.0
 AleqgAATr,30.csv,coopgreedy,40.0,120.0
 AleqgAATr,30.csv,coopgreedy,24.0,96.0
+PPO,10.csv,greedyneg,28.0,38.0
 SMAlegAATr,50.csv,coopgreedy,228.0,82.0
 SMAlegAATr,50.csv,coopgreedy,68.0,202.0
 SMAlegAATr,50.csv,coopgreedy,28.0,142.0
@@ -2889,6 +2952,7 @@ MADQN,50.csv,spp,0.0,100.0
 MADQN,50.csv,spp,0.0,100.0
 MADQN,50.csv,spp,-100.0,-50.0
 MADQN,50.csv,spp,-100.0,-50.0
+PPO,60.csv,minimax,8.0,-124.0
 QAlegAATr,40.csv,coop,240.0,120.0
 QAlegAATr,40.csv,coop,240.0,120.0
 QAlegAATr,40.csv,coop,240.0,120.0
@@ -2949,6 +3013,7 @@ SMAlegAATr,30.csv,bbl,-40.0,-32.0
 SMAlegAATr,30.csv,bbl,-56.0,-32.0
 SMAlegAATr,30.csv,bbl,-40.0,-32.0
 SMAlegAATr,30.csv,bbl,-56.0,-32.0
+PPO,20.csv,spp,76.0,82.0
 DQN,30.csv,eee,-12.0,42.0
 DQN,30.csv,eee,-4.0,54.0
 DQN,30.csv,eee,0.0,60.0
@@ -2969,6 +3034,7 @@ AleqgAATr,60.csv,roundnum2,-64.0,24.0
 AleqgAATr,60.csv,roundnum2,-32.0,72.0
 AleqgAATr,60.csv,roundnum2,-72.0,12.0
 AleqgAATr,60.csv,roundnum2,-68.0,18.0
+PPO,30.csv,coop,104.0,128.0
 AlegAATr,50.csv,minimax,-92.0,-54.0
 AlegAATr,50.csv,minimax,-92.0,-54.0
 AlegAATr,50.csv,minimax,-92.0,-54.0
@@ -3014,6 +3080,7 @@ AlegAATr,60.csv,bbl,-100.0,-62.0
 AlegAATr,60.csv,bbl,-112.0,-64.0
 AlegAATr,60.csv,bbl,-112.0,-64.0
 AlegAATr,60.csv,bbl,-112.0,-64.0
+PPO,20.csv,eee,-4.0,-38.0
 RAlegAATr,60.csv,spp,120.0,300.0
 RAlegAATr,60.csv,spp,-120.0,-60.0
 RAlegAATr,60.csv,spp,120.0,300.0
@@ -3214,6 +3281,7 @@ RAlegAATr,10.csv,coop,20.0,50.0
 RAlegAATr,10.csv,coop,20.0,50.0
 RAlegAATr,10.csv,coop,20.0,50.0
 RAlegAATr,10.csv,coop,20.0,50.0
+PPO,60.csv,cfr,-20.0,-110.0
 SMAlegAATr,20.csv,bullied,112.0,64.0
 SMAlegAATr,20.csv,bullied,112.0,64.0
 SMAlegAATr,20.csv,bullied,112.0,64.0
@@ -3239,6 +3307,7 @@ SMAlegAATr,60.csv,spp,-116.0,-62.0
 SMAlegAATr,60.csv,spp,352.0,184.0
 SMAlegAATr,60.csv,spp,-116.0,-62.0
 SMAlegAATr,60.csv,spp,-116.0,-62.0
+PPO,50.csv,coopgreedy,136.0,112.0
 MADQN,10.csv,cfr,-20.0,-10.0
 MADQN,10.csv,cfr,-20.0,-10.0
 MADQN,10.csv,cfr,-20.0,-10.0
@@ -3284,6 +3353,7 @@ MADQN,30.csv,coop,60.0,150.0
 MADQN,30.csv,coop,60.0,150.0
 MADQN,30.csv,coop,60.0,150.0
 MADQN,30.csv,coop,60.0,150.0
+PPO,20.csv,roundnum,64.0,88.0
 SOAleqgAATr,30.csv,random,8.0,32.0
 SOAleqgAATr,30.csv,random,72.0,48.0
 SOAleqgAATr,30.csv,random,8.0,64.0
@@ -3449,6 +3519,7 @@ AlegAATr,10.csv,bbl,-12.0,-14.0
 AlegAATr,10.csv,bbl,-12.0,-14.0
 AlegAATr,10.csv,bbl,-12.0,-14.0
 AlegAATr,10.csv,bbl,-12.0,-14.0
+PPO,50.csv,eee,40.0,-32.0
 SMAlegAATr,50.csv,random,180.0,26.0
 SMAlegAATr,50.csv,random,192.0,12.0
 SMAlegAATr,50.csv,random,172.0,14.0
@@ -3464,6 +3535,7 @@ AleqgAATr,10.csv,roundnum2,-20.0,-10.0
 AleqgAATr,10.csv,roundnum2,-20.0,-10.0
 AleqgAATr,10.csv,roundnum2,-20.0,-10.0
 AleqgAATr,10.csv,roundnum2,-20.0,-10.0
+PPO,40.csv,coop,148.0,166.0
 AlegAATr,20.csv,minimax,-32.0,-24.0
 AlegAATr,20.csv,minimax,-32.0,-24.0
 AlegAATr,20.csv,minimax,-32.0,-24.0
@@ -3494,6 +3566,7 @@ RAlegAATr,50.csv,cooppunish,0.0,100.0
 RAlegAATr,50.csv,cooppunish,0.0,100.0
 RAlegAATr,50.csv,cooppunish,0.0,100.0
 RAlegAATr,50.csv,cooppunish,0.0,100.0
+PPO,50.csv,spp,-16.0,-92.0
 DQN,40.csv,eee,-24.0,44.0
 DQN,40.csv,eee,-8.0,68.0
 DQN,40.csv,eee,-16.0,56.0
@@ -3534,6 +3607,7 @@ QAlegAATr,60.csv,cooppunish,244.0,6.0
 QAlegAATr,60.csv,cooppunish,244.0,6.0
 QAlegAATr,60.csv,cooppunish,244.0,6.0
 QAlegAATr,60.csv,cooppunish,244.0,6.0
+PPO,10.csv,minimax,0.0,-20.0
 MADQN,20.csv,spp,-40.0,-20.0
 MADQN,20.csv,spp,40.0,100.0
 MADQN,20.csv,spp,-40.0,-20.0
@@ -3559,6 +3633,7 @@ QAlegAATr,30.csv,coop,180.0,90.0
 QAlegAATr,30.csv,coop,180.0,90.0
 QAlegAATr,30.csv,coop,180.0,90.0
 QAlegAATr,30.csv,coop,180.0,90.0
+PPO,60.csv,greedyneg,-12.0,-114.0
 SMAlegAATr,20.csv,coopgreedy,16.0,64.0
 SMAlegAATr,20.csv,coopgreedy,84.0,22.0
 SMAlegAATr,20.csv,coopgreedy,92.0,34.0
@@ -3619,6 +3694,7 @@ SMAlegAATr,40.csv,minimax,-76.0,-42.0
 SMAlegAATr,40.csv,minimax,-76.0,-42.0
 SMAlegAATr,40.csv,minimax,-76.0,-42.0
 SMAlegAATr,40.csv,minimax,-76.0,-42.0
+PPO,60.csv,bullypunish,8.0,-124.0
 QAlegAATr,60.csv,selfplay,360.0,180.0
 QAlegAATr,60.csv,selfplay,360.0,180.0
 QAlegAATr,60.csv,selfplay,360.0,180.0
@@ -3719,6 +3795,7 @@ QAlegAATr,60.csv,bullypunish,-72.0,-84.0
 QAlegAATr,60.csv,bullypunish,-72.0,-84.0
 QAlegAATr,60.csv,bullypunish,-72.0,-84.0
 QAlegAATr,60.csv,bullypunish,-72.0,-84.0
+PPO,50.csv,roundnum,88.0,48.0
 SOAleqgAATr,40.csv,random,28.0,50.0
 SOAleqgAATr,40.csv,random,48.0,48.0
 SOAleqgAATr,40.csv,random,64.0,64.0
@@ -3759,6 +3836,7 @@ MADQN,60.csv,cfr,-120.0,-60.0
 MADQN,60.csv,cfr,-120.0,-60.0
 MADQN,60.csv,cfr,-120.0,-60.0
 MADQN,60.csv,cfr,-120.0,-60.0
+PPO,20.csv,coopgreedy,64.0,64.0
 RDQN,60.csv,roundnum2,-68.0,18.0
 RDQN,60.csv,roundnum2,-68.0,18.0
 RDQN,60.csv,roundnum2,-60.0,30.0
@@ -3794,6 +3872,7 @@ SMAlegAATr,50.csv,bullied,292.0,154.0
 SMAlegAATr,50.csv,bullied,292.0,154.0
 SMAlegAATr,50.csv,bullied,292.0,154.0
 SMAlegAATr,50.csv,bullied,292.0,154.0
+PPO,10.csv,cfr,4.0,-22.0
 AleqgAATr,20.csv,bullypunish,-40.0,-20.0
 AleqgAATr,20.csv,bullypunish,-40.0,-20.0
 AleqgAATr,20.csv,bullypunish,-40.0,-20.0
@@ -4009,6 +4088,7 @@ RAlegAATr,50.csv,bbl,-96.0,-44.0
 RAlegAATr,50.csv,bbl,-100.0,-50.0
 RAlegAATr,50.csv,bbl,-96.0,-44.0
 RAlegAATr,50.csv,bbl,-100.0,-50.0
+PPO,60.csv,selfplay,96.0,32.0
 SMAlegAATr,10.csv,cooppunish,4.0,18.0
 SMAlegAATr,10.csv,cooppunish,4.0,18.0
 SMAlegAATr,10.csv,cooppunish,4.0,18.0
@@ -4064,6 +4144,7 @@ AleqgAATr,10.csv,roundnum,20.0,50.0
 AleqgAATr,10.csv,roundnum,20.0,50.0
 AleqgAATr,10.csv,roundnum,20.0,50.0
 AleqgAATr,10.csv,roundnum,20.0,50.0
+PPO,60.csv,random,104.0,68.0
 RAlegAATr,60.csv,coopgreedy,80.0,240.0
 RAlegAATr,60.csv,coopgreedy,56.0,204.0
 RAlegAATr,60.csv,coopgreedy,64.0,216.0
@@ -4109,6 +4190,7 @@ AlegAATr,30.csv,random,28.0,70.0
 AlegAATr,30.csv,random,-4.0,14.0
 AlegAATr,30.csv,random,20.0,50.0
 AlegAATr,30.csv,random,20.0,42.0
+PPO,10.csv,bbl,-4.0,-18.0
 RDQN,60.csv,greedyneg,116.0,294.0
 RDQN,60.csv,greedyneg,116.0,294.0
 RDQN,60.csv,greedyneg,116.0,294.0
@@ -4119,6 +4201,7 @@ SOAleqgAATr,20.csv,minimax,-32.0,-24.0
 SOAleqgAATr,20.csv,minimax,-32.0,-24.0
 SOAleqgAATr,20.csv,minimax,-32.0,-24.0
 SOAleqgAATr,20.csv,minimax,-32.0,-24.0
+PPO,30.csv,coopgreedy,88.0,120.0
 QAlegAATr,60.csv,bbl,-72.0,-84.0
 QAlegAATr,60.csv,bbl,-60.0,-82.0
 QAlegAATr,60.csv,bbl,-72.0,-84.0
@@ -4149,11 +4232,13 @@ MADQN,50.csv,coop,100.0,250.0
 MADQN,50.csv,coop,100.0,250.0
 MADQN,50.csv,coop,100.0,250.0
 MADQN,50.csv,coop,100.0,250.0
+PPO,40.csv,roundnum,48.0,88.0
 SOAleqgAATr,50.csv,random,4.0,98.0
 SOAleqgAATr,50.csv,random,-16.0,68.0
 SOAleqgAATr,50.csv,random,40.0,88.0
 SOAleqgAATr,50.csv,random,4.0,66.0
 SOAleqgAATr,50.csv,random,48.0,68.0
+PPO,10.csv,bullied,40.0,40.0
 SOAleqgAATr,40.csv,greedyneg,56.0,44.0
 SOAleqgAATr,40.csv,greedyneg,56.0,44.0
 SOAleqgAATr,40.csv,greedyneg,56.0,44.0
@@ -4389,6 +4474,8 @@ RAlegAATr,40.csv,cooppunish,0.0,80.0
 RAlegAATr,40.csv,cooppunish,0.0,80.0
 RAlegAATr,40.csv,cooppunish,0.0,80.0
 RAlegAATr,40.csv,cooppunish,0.0,80.0
+PPO,60.csv,roundnum2,64.0,-32.0
+PPO,40.csv,spp,68.0,54.0
 DQN,50.csv,eee,-28.0,58.0
 DQN,50.csv,eee,8.0,112.0
 DQN,50.csv,eee,-8.0,88.0
@@ -4399,6 +4486,7 @@ AleqgAATr,20.csv,spp,40.0,100.0
 AleqgAATr,20.csv,spp,-40.0,-20.0
 AleqgAATr,20.csv,spp,-40.0,-20.0
 AleqgAATr,20.csv,spp,0.0,40.0
+PPO,50.csv,coop,184.0,208.0
 AlegAATr,30.csv,minimax,-52.0,-34.0
 AlegAATr,30.csv,minimax,-52.0,-34.0
 AlegAATr,30.csv,minimax,-52.0,-34.0
@@ -4414,6 +4502,7 @@ SOAleqgAATr,60.csv,eee,40.0,52.0
 SOAleqgAATr,60.csv,eee,-60.0,-50.0
 SOAleqgAATr,60.csv,eee,-4.0,-14.0
 SOAleqgAATr,60.csv,eee,296.0,156.0
+PPO,10.csv,cooppunish,12.0,14.0
 AleqgAATr,10.csv,greedyneg,16.0,44.0
 AleqgAATr,10.csv,greedyneg,16.0,44.0
 AleqgAATr,10.csv,greedyneg,16.0,44.0
@@ -4449,6 +4538,7 @@ DQN,50.csv,spp,0.0,100.0
 DQN,50.csv,spp,0.0,100.0
 DQN,50.csv,spp,-100.0,-50.0
 DQN,50.csv,spp,-100.0,-50.0
+PPO,40.csv,eee,88.0,76.0
 RDQN,60.csv,coop,120.0,300.0
 RDQN,60.csv,coop,120.0,300.0
 RDQN,60.csv,coop,120.0,300.0

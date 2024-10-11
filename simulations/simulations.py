@@ -5,6 +5,7 @@ from agents.alegaatr import AlegAATr
 from agents.aleqgaatr import AleqgAATr
 from agents.generator import Bullied, BullyPunish, CFR, Coop, CoopPunish, Minimax
 from agents.madqn import MADQN
+from agents.ppo import PPO
 from agents.prisoners_dilemma_specific_agents import CoopOrGreedy, GreedyUntilNegative, Random, RoundNum, RoundNum2
 from agents.qalegaatr import QAlegAATr
 from agents.ralegaatr import RAlegAATr
@@ -19,7 +20,7 @@ from game.prisoners_dilemma import PrisonersDilemma
 import os
 
 
-N_EPOCHS = 5
+N_EPOCHS = 1
 N_ROUNDS = [10, 20, 30, 40, 50, 60]
 n_training_iterations = N_EPOCHS * len(N_ROUNDS)
 progress_percentage_chunk = int(0.05 * n_training_iterations)
@@ -27,8 +28,8 @@ curr_iteration = 0
 print(n_training_iterations, progress_percentage_chunk)
 
 
-names = ['DQN', 'MADQN', 'RDQN', 'AleqgAATr', 'RAlegAATr', 'SOAleqgAATr', 'AlegAATr', 'SMAlegAATr', 'QAlegAATr', 'RawO']
-# names = []
+# names = ['DQN', 'MADQN', 'RDQN', 'AleqgAATr', 'RAlegAATr', 'SOAleqgAATr', 'AlegAATr', 'SMAlegAATr', 'QAlegAATr', 'RawO', 'PPO']
+names = ['PPO']
 
 # Reset any existing simulation files (opening a file in write mode will truncate it)
 for file in os.listdir('../simulations/results/'):
@@ -69,29 +70,31 @@ for epoch in range(N_EPOCHS):
 
         for opponent, opponent_label in list_of_opponents:
             agents_to_test = []
-            agents_to_test.append(DQNAgent(PrisonersDilemma(), player_idx))
-            agents_to_test.append(MADQN(PrisonersDilemma(), player_idx))
-            agents_to_test.append(RDQN(PrisonersDilemma(), player_idx))
-            agents_to_test.append(AleqgAATr(PrisonersDilemma(), player_idx))
-            agents_to_test.append(RAlegAATr(PrisonersDilemma(), player_idx))
-            agents_to_test.append(SOAleqgAATr(PrisonersDilemma(), player_idx))
-            agents_to_test.append(AlegAATr(PrisonersDilemma(), player_idx, lmbda=0.0, ml_model_type='knn',
-                                           enhanced=True))
-            agents_to_test.append(SMAlegAATr(PrisonersDilemma(), player_idx, enhanced=False))
-            agents_to_test.append(QAlegAATr(PrisonersDilemma(), player_idx, enhanced=False))
-            agents_to_test.append(RawO(PrisonersDilemma(), player_idx, enhanced=False))
+            # agents_to_test.append(DQNAgent(PrisonersDilemma(), player_idx))
+            # agents_to_test.append(MADQN(PrisonersDilemma(), player_idx))
+            # agents_to_test.append(RDQN(PrisonersDilemma(), player_idx))
+            # agents_to_test.append(AleqgAATr(PrisonersDilemma(), player_idx))
+            # agents_to_test.append(RAlegAATr(PrisonersDilemma(), player_idx))
+            # agents_to_test.append(SOAleqgAATr(PrisonersDilemma(), player_idx))
+            # agents_to_test.append(AlegAATr(PrisonersDilemma(), player_idx, lmbda=0.0, ml_model_type='knn',
+            #                                enhanced=True))
+            # agents_to_test.append(SMAlegAATr(PrisonersDilemma(), player_idx, enhanced=False))
+            # agents_to_test.append(QAlegAATr(PrisonersDilemma(), player_idx, enhanced=False))
+            # agents_to_test.append(RawO(PrisonersDilemma(), player_idx, enhanced=False))
+            agents_to_test.append(PPO(PrisonersDilemma(), player_idx))
 
             self_play_agents = []
-            self_play_agents.append(DQNAgent(PrisonersDilemma(), opp_idx))
-            self_play_agents.append(MADQN(PrisonersDilemma(), opp_idx))
-            self_play_agents.append(RDQN(PrisonersDilemma(), opp_idx))
-            self_play_agents.append(AleqgAATr(PrisonersDilemma(), opp_idx))
-            self_play_agents.append(RAlegAATr(PrisonersDilemma(), opp_idx))
-            self_play_agents.append(SOAleqgAATr(PrisonersDilemma(), opp_idx))
-            self_play_agents.append(AlegAATr(PrisonersDilemma(), opp_idx, lmbda=0.0, ml_model_type='knn', enhanced=True))
-            self_play_agents.append(SMAlegAATr(PrisonersDilemma(), opp_idx, enhanced=False))
-            self_play_agents.append(QAlegAATr(PrisonersDilemma(), opp_idx, enhanced=False))
-            self_play_agents.append(RawO(PrisonersDilemma(), opp_idx, enhanced=False))
+            # self_play_agents.append(DQNAgent(PrisonersDilemma(), opp_idx))
+            # self_play_agents.append(MADQN(PrisonersDilemma(), opp_idx))
+            # self_play_agents.append(RDQN(PrisonersDilemma(), opp_idx))
+            # self_play_agents.append(AleqgAATr(PrisonersDilemma(), opp_idx))
+            # self_play_agents.append(RAlegAATr(PrisonersDilemma(), opp_idx))
+            # self_play_agents.append(SOAleqgAATr(PrisonersDilemma(), opp_idx))
+            # self_play_agents.append(AlegAATr(PrisonersDilemma(), opp_idx, lmbda=0.0, ml_model_type='knn', enhanced=True))
+            # self_play_agents.append(SMAlegAATr(PrisonersDilemma(), opp_idx, enhanced=False))
+            # self_play_agents.append(QAlegAATr(PrisonersDilemma(), opp_idx, enhanced=False))
+            # self_play_agents.append(RawO(PrisonersDilemma(), opp_idx, enhanced=False))
+            self_play_agents.append(PPO(PrisonersDilemma(), opp_idx))
 
             for i, agent_to_test in enumerate(agents_to_test):
                 if opponent_label == 'selfplay':
