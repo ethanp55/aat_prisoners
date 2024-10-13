@@ -20,7 +20,7 @@ from game.prisoners_dilemma import PrisonersDilemma
 import os
 
 
-N_EPOCHS = 1
+N_EPOCHS = 5
 N_ROUNDS = [10, 20, 30, 40, 50, 60]
 n_training_iterations = N_EPOCHS * len(N_ROUNDS)
 progress_percentage_chunk = int(0.05 * n_training_iterations)
@@ -109,8 +109,8 @@ for epoch in range(N_EPOCHS):
                 sim_label = f'{agent_to_test.name}_{opponent_label}_r={n_rounds}'
                 run_with_specified_agents(players, player_indices, n_rounds,
                                           results_file=f'../simulations/results/{sim_label}.csv',
-                                          generator_file=f'../simulations/generator_usage/{sim_label}.csv'
-                                          # vector_file=f'../simulations/vectors/{sim_label}.csv'
+                                          generator_file=f'../simulations/generator_usage/{sim_label}.csv',
+                                          vector_file=f'../simulations/vectors/{sim_label}.csv'
                                           )
 
         curr_iteration += 1

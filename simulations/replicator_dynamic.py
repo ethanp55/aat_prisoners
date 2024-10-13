@@ -2,6 +2,7 @@ from agents.dqn import DQNAgent
 from agents.alegaatr import AlegAATr
 from agents.aleqgaatr import AleqgAATr
 from agents.madqn import MADQN
+from agents.ppo import PPO
 from agents.qalegaatr import QAlegAATr
 from agents.ralegaatr import RAlegAATr
 from agents.rawo import RawO
@@ -16,6 +17,7 @@ from typing import List
 
 
 # Variables
+# N_AGENTS = 11
 N_AGENTS = 10
 N_ITERATIONS = 20
 N_ROUNDS = 30
@@ -30,10 +32,11 @@ algorithms = [
     AleqgAATr(PrisonersDilemma(), 0),
     RAlegAATr(PrisonersDilemma(), 0),
     SOAleqgAATr(PrisonersDilemma(), 0),
-    AlegAATr(PrisonersDilemma(), 0, lmbda=0.0, ml_model_type='knn', enhanced=True),
+    # AlegAATr(PrisonersDilemma(), 0, lmbda=0.0, ml_model_type='knn', enhanced=True),
     SMAlegAATr(PrisonersDilemma(), 0, enhanced=False),
     QAlegAATr(PrisonersDilemma(), 0, enhanced=False),
-    RawO(PrisonersDilemma(), 0, enhanced=False)
+    RawO(PrisonersDilemma(), 0, enhanced=False),
+    PPO(PrisonersDilemma(), 0)
 ]
 population_selection = [
     DQNAgent(PrisonersDilemma(), 1),
@@ -42,10 +45,11 @@ population_selection = [
     AleqgAATr(PrisonersDilemma(), 1),
     RAlegAATr(PrisonersDilemma(), 1),
     SOAleqgAATr(PrisonersDilemma(), 1),
-    AlegAATr(PrisonersDilemma(), 1, lmbda=0.0, ml_model_type='knn', enhanced=True),
+    # AlegAATr(PrisonersDilemma(), 1, lmbda=0.0, ml_model_type='knn', enhanced=True),
     SMAlegAATr(PrisonersDilemma(), 1, enhanced=False),
     QAlegAATr(PrisonersDilemma(), 1, enhanced=False),
-    RawO(PrisonersDilemma(), 1, enhanced=False)
+    RawO(PrisonersDilemma(), 1, enhanced=False),
+    PPO(PrisonersDilemma(), 1)
 ]
 population = [population_selection[i] for i in range(N_AGENTS)]
 population_types = [type(alg) for alg in population]

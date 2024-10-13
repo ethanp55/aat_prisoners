@@ -6,7 +6,7 @@ from game.prisoners_dilemma import PrisonersDilemma
 from game.main import run_with_specified_agents
 
 
-N_EPOCHS = 10
+N_EPOCHS = 500
 N_ROUNDS = [20, 30, 40, 50]
 n_training_iterations = N_EPOCHS * len(N_ROUNDS)
 progress_percentage_chunk = int(0.05 * n_training_iterations)

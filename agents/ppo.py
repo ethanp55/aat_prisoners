@@ -107,7 +107,7 @@ class PPO(Agent):
             prob_weights = self.action_model(np.expand_dims(scaled_state, 0))
             value = self.value_model(np.expand_dims(scaled_state, 0)).numpy()[0][0]
             self.add_experience(self.generator_to_use_idx, increase, self.state, prob_weights.numpy(), value, True)
-        print(f'Generators used: {self.generators_used}')
+        # print(f'Generators used: {self.generators_used}')
 
     def store_terminal_state(self, state, reward) -> None:
         player_idx, opp_idx = self.player, 1 - self.player
@@ -146,6 +146,7 @@ class PPO(Agent):
         # Extract historical data
         batch = random.sample(self.replay_buffer, len(self.replay_buffer))
         batch_states, batch_actions, batch_old_log_probs, batch_values, batch_rewards, batch_dones = map(np.array, zip(*batch))
+        actions_taken = tf.convert_to_tensor(batch_actions, dtype=tf.int32)
 
         # Calculate advantages and discounted rewards
         def _discount_rewards(rewards):
@@ -159,10 +160,7 @@ class PPO(Agent):
         for i in reversed(range(len(deltas) - 1)):
             gaes.append(deltas[i] + 0.97 * self.discount_factor * gaes[-1])
         gaes = np.array(gaes[::-1])
-
-        advantages_expanded = np.expand_dims(gaes, axis=1)
-        num_copies = len(self.generator_indices)
-        advantages_expanded = np.tile(advantages_expanded, [1, num_copies])
+        gaes = (gaes - gaes.mean()) / (gaes.std() + 1e-8)
         returns = _discount_rewards(batch_rewards)
 
         # Train the action/policy model
@@ -170,23 +168,25 @@ class PPO(Agent):
             with tf.GradientTape() as tape:
                 new_probs = self.action_model(batch_states)
                 new_log_probs = tf.math.log(new_probs + 1e-10)
-                action_log_probs = batch_actions * new_log_probs
-                ratio = tf.math.exp(action_log_probs - batch_old_log_probs)
+                old_log_probs_for_actions = tf.gather(batch_old_log_probs, actions_taken, batch_dims=1)
+                new_log_probs_for_actions = tf.gather(new_log_probs, actions_taken, batch_dims=1)
+                ratio = tf.math.exp(new_log_probs_for_actions - old_log_probs_for_actions)
                 clipped_ratio = tf.clip_by_value(ratio, 1 - 0.2, 1 + 0.2)
-                policy_loss = -tf.reduce_mean(tf.minimum(ratio * advantages_expanded, clipped_ratio * advantages_expanded))
+                policy_loss = -tf.reduce_mean(tf.minimum(ratio * gaes, clipped_ratio * gaes))
 
-                kl = tf.reduce_mean(batch_old_log_probs - action_log_probs)
+                kl = tf.reduce_mean(old_log_probs_for_actions - new_log_probs_for_actions).numpy()
                 if kl > 0.01:
-                    print(kl)
+                    print(f'KL too large: {kl}')
                     break
 
             grads = tape.gradient(policy_loss, self.action_model.trainable_variables)
             self.action_model_optimizer.apply_gradients(zip(grads, self.action_model.trainable_variables))
-            loss_val = policy_loss.numpy()
-            if loss_val < self.best_loss:
-                print(f'Loss improved from {self.best_loss} to {loss_val}')
-                self.best_loss = loss_val
-                self.save_network()
+            # loss_val = policy_loss.numpy()
+            # if loss_val < self.best_loss:
+            #     print(f'Loss improved from {self.best_loss} to {loss_val}')
+            #     self.best_loss = loss_val
+            #     self.save_network()
+        self.save_network()
 
         # Train the value model
         for _ in range(100):
@@ -200,9 +200,8 @@ class PPO(Agent):
         # Accumulate experiences over multiple time steps
         self.scaler.update(state)
         scaled_state = self.scaler.scale(state)
-        actions_one_hot = tf.one_hot(action, len(self.generator_indices))
         log_probs = np.log(np.squeeze(probs) + 1e-10)
-        self.current_episode_experiences.append((scaled_state, actions_one_hot, log_probs, value, reward, done))
+        self.current_episode_experiences.append((scaled_state, action, log_probs, value, reward, done))
 
         # If the episode is done, add the accumulated experiences to the replay buffer
         if done:
