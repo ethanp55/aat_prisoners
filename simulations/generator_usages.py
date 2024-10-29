@@ -67,8 +67,11 @@ for agent_name in agent_names:
 
     # Overall
     generator_usage = df[[f'generator_{i}' for i in range(N_GENERATORS)]].sum()
+    plt.figure(figsize=(10, 3))
     plt.grid()
     plt.bar(generator_usage.index, generator_usage.values)
-    plt.xticks(ticks=range(N_GENERATORS), labels=[i for i in range(N_GENERATORS)])
+    plt.xticks(ticks=range(N_GENERATORS), labels=['Bullied', 'Bully', 'CFR', 'Coop', 'Coop-Punish', 'Minimax'])
+    plt.xlabel('Generator', fontsize=18, fontweight='bold')
+    plt.ylabel('Counts', fontsize=18, fontweight='bold')
     plt.savefig(f'../simulations/generator_usage_plots/{agent_name}_overall.png', bbox_inches='tight')
     plt.clf()
