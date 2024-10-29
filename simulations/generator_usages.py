@@ -69,7 +69,7 @@ for agent_name in agent_names:
     generator_usage = df[[f'generator_{i}' for i in range(N_GENERATORS)]].sum()
     plt.figure(figsize=(10, 3))
     plt.grid()
-    plt.bar(generator_usage.index, generator_usage.values)
+    plt.bar(generator_usage.index, generator_usage.values, color='orange')
     plt.xticks(ticks=range(N_GENERATORS), labels=['Bullied', 'Bully', 'CFR', 'Coop', 'Coop-Punish', 'Minimax'])
     plt.xlabel('Generator', fontsize=18, fontweight='bold')
     plt.ylabel('Counts', fontsize=18, fontweight='bold')
