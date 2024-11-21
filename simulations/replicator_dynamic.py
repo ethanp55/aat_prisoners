@@ -19,7 +19,7 @@ from typing import List
 # Variables
 # N_AGENTS = 11
 N_AGENTS = 10
-N_ITERATIONS = 20
+N_ITERATIONS = 50
 N_ROUNDS = 30
 progress_percentage_chunk = int(0.05 * N_ITERATIONS)
 
@@ -32,7 +32,7 @@ algorithms = [
     AleqgAATr(PrisonersDilemma(), 0),
     RAlegAATr(PrisonersDilemma(), 0),
     SOAleqgAATr(PrisonersDilemma(), 0),
-    # AlegAATr(PrisonersDilemma(), 0, lmbda=0.0, ml_model_type='knn', enhanced=True),
+    AlegAATr(PrisonersDilemma(), 0, lmbda=0.0, ml_model_type='knn', enhanced=True),
     SMAlegAATr(PrisonersDilemma(), 0, enhanced=False),
     QAlegAATr(PrisonersDilemma(), 0, enhanced=False),
     RawO(PrisonersDilemma(), 0, enhanced=False),
@@ -45,7 +45,7 @@ population_selection = [
     AleqgAATr(PrisonersDilemma(), 1),
     RAlegAATr(PrisonersDilemma(), 1),
     SOAleqgAATr(PrisonersDilemma(), 1),
-    # AlegAATr(PrisonersDilemma(), 1, lmbda=0.0, ml_model_type='knn', enhanced=True),
+    AlegAATr(PrisonersDilemma(), 1, lmbda=0.0, ml_model_type='knn', enhanced=True),
     SMAlegAATr(PrisonersDilemma(), 1, enhanced=False),
     QAlegAATr(PrisonersDilemma(), 1, enhanced=False),
     RawO(PrisonersDilemma(), 1, enhanced=False),
