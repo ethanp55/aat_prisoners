@@ -2,7 +2,7 @@ import numpy as np
 import os
 from scipy.stats import hmean
 
-baselines = {'bullypunish': -1, 'cooppunish': 3}
+baselines = {'bullypunish': -1, 'selfplay': 3}
 results, folder = {}, '../simulations/results/'
 N_ROUNDS = 30
 
@@ -21,8 +21,8 @@ for file in os.listdir(folder):
         assert avg_final_reward <= comparison and avg_final_reward < 0
         val = comparison / avg_final_reward
 
-    elif opp_type == 'cooppunish':
-        worst = -3 * n_rounds
+    elif opp_type == 'selfplay':
+        worst = -1 * n_rounds
         denom = comparison - worst
         assert denom > 0
         all_deviations = []
@@ -30,6 +30,8 @@ for file in os.listdir(folder):
             deviations = [1 - ((comparison - min(reward, comparison)) / denom) for reward in row]
             all_deviations.append(sum(deviations) / len(deviations))
         val = sum(all_deviations) / len(all_deviations)
+        # avgs = [sum(row) / len(row) for row in data]
+        # val = (sum(avgs) / len(avgs)) / comparison
 
     else:
         raise Exception(f'{opp_type} is not a defined opponent type')
@@ -44,7 +46,7 @@ for agent, res, in results.items():
     # defect_scores, coop_scores = res['bullypunish'], res['cooppunish']
     # defect_score = sum(defect_scores) / len(defect_scores)
     # coop_score = hmean(coop_scores)
-    defect_score, coop_score = res['bullypunish'], res['cooppunish']
+    defect_score, coop_score = res['bullypunish'], res['selfplay']
     robust_coop_score = min(defect_score, coop_score)
     print(f'Defect score: {defect_score}')
     print(f'Coop score: {coop_score}')
