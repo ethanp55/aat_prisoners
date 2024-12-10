@@ -1,6 +1,7 @@
 from agents.alegaatr import AlegAATr
 from agents.generator_pool import GeneratorPool
 from agents.qalegaatr import QAlegAATr
+from agents.raat import RAAT
 from agents.rawo import RawO
 from agents.smalegaatr import SMAlegAATr
 from agents.spp import SPP
@@ -149,7 +150,8 @@ for epoch in range(N_EPOCHS):
             # agents_to_train_on.append(AlegAATr(game, player_idx, lmbda=0.0, ml_model_type='knn', train=True))
             # agents_to_train_on.append(SMAlegAATr(game, player_idx, train=True))
             # agents_to_train_on.append(QAlegAATr(game, player_idx, train=True))
-            agents_to_train_on.append(RawO(game, player_idx, train=True))
+            # agents_to_train_on.append(RawO(game, player_idx, train=True))
+            agents_to_train_on.append(RAAT(game, player_idx, train=True))
 
             for agent_to_train_on in agents_to_train_on:
                 players = [deepcopy(opponent), agent_to_train_on]
