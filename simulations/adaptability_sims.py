@@ -113,6 +113,8 @@ for epoch in range(N_EPOCHS):
         agents_to_test.append(RAAT(PrisonersDilemma(), player_idx, enhanced=False))
 
         for agent_to_test in agents_to_test:
+            if isinstance(opponent, type(agent_to_test)):
+                continue
             opp = deepcopy(opponent)
             opp.name = f'{opp.name}copy'
             players = [opp, agent_to_test]

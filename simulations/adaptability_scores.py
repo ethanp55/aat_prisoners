@@ -39,7 +39,7 @@ rc_scores = []
 for agent, res, in results.items():
     print(agent)
     defect_score, self_play_score, coop_score = res['bullypunish'], res['selfplay'], res['coop']
-    robust_coop_score = min(defect_score, self_play_score, coop_score)
+    robust_coop_score = min([defect_score, self_play_score, coop_score])
     print(f'Defect score: {defect_score}')
     print(f'Self-play score: {self_play_score}')
     print(f'Coop score: {coop_score}')
