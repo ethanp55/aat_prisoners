@@ -8,8 +8,6 @@ from agents.raat import RAAT
 from agents.ralegaatr import RAlegAATr
 from agents.rawo import RawO
 from agents.rdqn import RDQN
-from agents.smalegaatr import SMAlegAATr
-from agents.soaleqgaatr import SOAleqgAATr
 from copy import deepcopy
 from game.main import run_with_specified_agents
 from game.prisoners_dilemma import PrisonersDilemma
@@ -27,31 +25,27 @@ progress_percentage_chunk = int(0.05 * N_ITERATIONS)
 # Frequencies and population details
 algorithms = [
     DQNAgent(PrisonersDilemma(), 0),
-    # MADQN(PrisonersDilemma(), 0),
-    # RDQN(PrisonersDilemma(), 0),
+    MADQN(PrisonersDilemma(), 0),
+    RDQN(PrisonersDilemma(), 0),
     AleqgAATr(PrisonersDilemma(), 0),
     RAlegAATr(PrisonersDilemma(), 0),
-    # SOAleqgAATr(PrisonersDilemma(), 0),
     AlegAATr(PrisonersDilemma(), 0, lmbda=0.0, ml_model_type='knn', enhanced=True),
-    # SMAlegAATr(PrisonersDilemma(), 0, enhanced=False),
-    QAlegAATr(PrisonersDilemma(), 0, enhanced=False),
-    # RawO(PrisonersDilemma(), 0, enhanced=False),
-    # PPO(PrisonersDilemma(), 0),
-    # RAAT(PrisonersDilemma(), 0, enhanced=False)
+    QAlegAATr(PrisonersDilemma(), 0),
+    RawO(PrisonersDilemma(), 0),
+    PPO(PrisonersDilemma(), 0),
+    RAAT(PrisonersDilemma(), 0)
 ]
 population_selection = [
     DQNAgent(PrisonersDilemma(), 1),
-    # MADQN(PrisonersDilemma(), 1),
-    # RDQN(PrisonersDilemma(), 1),
+    MADQN(PrisonersDilemma(), 1),
+    RDQN(PrisonersDilemma(), 1),
     AleqgAATr(PrisonersDilemma(), 1),
     RAlegAATr(PrisonersDilemma(), 1),
-    # SOAleqgAATr(PrisonersDilemma(), 1),
     AlegAATr(PrisonersDilemma(), 1, lmbda=0.0, ml_model_type='knn', enhanced=True),
-    # SMAlegAATr(PrisonersDilemma(), 1, enhanced=False),
-    QAlegAATr(PrisonersDilemma(), 1, enhanced=False),
-    # RawO(PrisonersDilemma(), 1, enhanced=False),
-    # PPO(PrisonersDilemma(), 1),
-    # RAAT(PrisonersDilemma(), 1, enhanced=False)
+    QAlegAATr(PrisonersDilemma(), 1),
+    RawO(PrisonersDilemma(), 1),
+    PPO(PrisonersDilemma(), 1),
+    RAAT(PrisonersDilemma(), 1)
 ]
 N_AGENTS = len(algorithms)
 agent_frequencies = [1 / N_AGENTS] * N_AGENTS
@@ -94,24 +88,22 @@ for iteration in range(N_ITERATIONS):
         agent_representation_over_time[alg.name] += [new_proportion]
 
 # Plot agent representations over time
-colors = ['red', 'green', 'blue', 'orange', 'purple', 'cyan', 'magenta', 'lime', 'pink', 'yellow', 'brown', 'black']
+colors = ['red', 'green', 'blue', 'orange', 'purple', 'cyan', 'magenta', 'yellow', 'brown', 'black']
 name_conversions = {
-    'DQN': 'DQN',
+    'DQN': 'EG-Raw',
+    'RAlegAATr': 'EG-AAT',
+    'AleqgAATr': 'EG-RawAAT',
     'MADQN': 'MADQN',
     'RDQN': 'RDQN',
-    'AleqgAATr': 'TRawAAT',
-    'RAlegAATr': 'TAAT',
-    'SOAleqgAATr': 'STRawAAT',
-    'AlegAATr': 'AlegAATr',
-    'SMAlegAATr': 'SRRawAAT',
-    'QAlegAATr': 'RRawAAT',
-    'RawO': 'RawR',
     'PPO': 'PPO',
-    'RAAT': 'RAAT'
+    'RawO': 'REGAE-Raw',
+    'RAAT': 'REGAE-AAT',
+    'QAlegAATr': 'REGAE-RawAAT',
+    'AlegAATr': 'AlegAATr'
 }
 plt.figure(figsize=(10, 3))
 plt.grid()
-for i, agent in enumerate(agent_representation_over_time.keys()):
+for i, agent in enumerate(name_conversions.keys()):
     proportions, color = agent_representation_over_time[agent], colors[i]
     plt.plot(proportions, label=name_conversions[agent], color=color)
 plt.xlabel('Iteration', fontsize=18, fontweight='bold')

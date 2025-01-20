@@ -6,42 +6,44 @@ from game.prisoners_dilemma import PrisonersDilemma
 from game.main import run_with_specified_agents
 
 
-N_EPOCHS = 10
-N_ROUNDS = [20, 30, 40, 50]
-n_training_iterations = N_EPOCHS * len(N_ROUNDS)
-progress_percentage_chunk = int(0.05 * n_training_iterations)
-curr_iteration = 0
-print(n_training_iterations, progress_percentage_chunk)
 
-aleqgaatr = AleqgAATr(PrisonersDilemma(), 1, train_network=True)
+def train_aleqgaatr():
+    N_EPOCHS = 10
+    N_ROUNDS = [20, 30, 40, 50]
+    n_training_iterations = N_EPOCHS * len(N_ROUNDS)
+    progress_percentage_chunk = int(0.05 * n_training_iterations)
+    curr_iteration = 0
+    print(n_training_iterations, progress_percentage_chunk)
 
-# Run the training process
-for epoch in range(N_EPOCHS):
-    print(f'Epoch {epoch + 1}')
-    player_idx = 1
-    opp_idx = 0
+    aleqgaatr = AleqgAATr(PrisonersDilemma(), 1, train_network=True)
 
-    for n_rounds in N_ROUNDS:
-        if curr_iteration != 0 and curr_iteration % progress_percentage_chunk == 0:
-            print(f'{100 * (curr_iteration / n_training_iterations)}%')
+    # Run the training process
+    for epoch in range(N_EPOCHS):
+        print(f'Epoch {epoch + 1}')
+        player_idx = 1
+        opp_idx = 0
 
-        game = PrisonersDilemma()
+        for n_rounds in N_ROUNDS:
+            if curr_iteration != 0 and curr_iteration % progress_percentage_chunk == 0:
+                print(f'{100 * (curr_iteration / n_training_iterations)}%')
 
-        list_of_opponents = []
-        list_of_opponents.append(SPP('SPP', game, opp_idx))
-        list_of_opponents.append(BBL('BBL', game, opp_idx))
-        list_of_opponents.append(EEE('EEE', game, opp_idx))
+            game = PrisonersDilemma()
 
-        for opponent in list_of_opponents:
-            players = [opponent, aleqgaatr]
-            player_indices = [opp_idx, player_idx]
-            run_with_specified_agents(players, player_indices, n_rounds)
+            list_of_opponents = []
+            list_of_opponents.append(SPP('SPP', game, opp_idx))
+            list_of_opponents.append(BBL('BBL', game, opp_idx))
+            list_of_opponents.append(EEE('EEE', game, opp_idx))
 
-            aleqgaatr.reset()
+            for opponent in list_of_opponents:
+                players = [opponent, aleqgaatr]
+                player_indices = [opp_idx, player_idx]
+                run_with_specified_agents(players, player_indices, n_rounds)
 
-        curr_iteration += 1
+                aleqgaatr.reset()
 
-    aleqgaatr.train()
-    aleqgaatr.update_epsilon()
-    aleqgaatr.update_networks()
-    aleqgaatr.clear_buffer()
+            curr_iteration += 1
+
+        aleqgaatr.train()
+        aleqgaatr.update_epsilon()
+        aleqgaatr.update_networks()
+        aleqgaatr.clear_buffer()
