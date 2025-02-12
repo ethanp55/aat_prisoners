@@ -102,8 +102,10 @@ for run_num in range(N_TRAIN_TEST_RUNS):
 
 
 conditions = ['Defect', 'Self-Play', 'Cooperate', 'Adaptability']
-alg_names = ['DQN', 'RAlegAATr', 'AleqgAATr', 'RawO', 'RAAT', 'QAlegAATr', 'AlegAATr']
-alg_plot_names = ['EG-Raw', 'EG-AAT', 'EG-RawAAT', 'REGAE-Raw', 'REGAE-AAT', 'REGAE-RawAAT', 'AlegAATr']
+alg_names = ['DQN', 'RawO', 'RAlegAATr', 'RAAT', 'AleqgAATr', 'QAlegAATr', 'AlegAATr']
+alg_plot_names = ['EG-Raw', 'REGAE-Raw', 'EG-AAT', 'REGAE-AAT', 'EG-RawAAT', 'REGAE-RawAAT', 'AlegAATr']
+colors = ['#ef8a62', '#67a9cf', '#ef8a62', '#67a9cf', '#ef8a62', '#67a9cf', '#999999']
+scores, score_types, learning_algs, features, domain = [], [], [], [], []
 for cond in ['d', 'c', 'a']:
     avgs, ses = [], []
     for alg in alg_names:
@@ -111,10 +113,29 @@ for cond in ['d', 'c', 'a']:
         avgs.append(np.mean(alg_data))
         ses.append(np.std(alg_data, ddof=1) / np.sqrt(len(alg_data)))
 
+        n_samples = len(alg_data)
+        scores.extend(alg_data)
+        score_types.extend([cond] * n_samples)
+        name = alg_plot_names[alg_names.index(alg)]
+        learning_alg = name.split('-')[0] if alg != 'AlegAATr' else 'REGAEKNN'
+        feature_set = name.split('-')[1] if alg != 'AlegAATr' else 'AATKNN'
+        learning_algs.extend([learning_alg] * n_samples)
+        features.extend([feature_set] * n_samples)
+        domain.extend(['prisoners'] * n_samples)
+
     plt.figure(figsize=(10, 3))
     plt.grid()
-    plt.bar(alg_plot_names, avgs, yerr=ses, capsize=5)
+    plt.bar(alg_plot_names, avgs, yerr=ses, capsize=5, color=colors)
     plt.xlabel('Algorithm', fontsize=18, fontweight='bold')
     plt.ylabel('Score', fontsize=18, fontweight='bold')
     plt.savefig(f'../simulations/{cond}.png', bbox_inches='tight')
     plt.clf()
+
+df = pd.DataFrame({
+    'score': scores,
+    'score_type': score_types,
+    'learning_alg': learning_algs,
+    'feature_set': features,
+    'domain': domain
+})
+df.to_csv('./prisoners_adaptability_results.csv', index=False)
